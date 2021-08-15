@@ -3,35 +3,46 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-  	<servlet-name>RegisterMainEvent</servlet-name>
-  	<display-name>RegisterMainEvent</display-name>
-  	<description></description>
-  	<servlet-class>servlet.RegisterMainEvent</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>RegisterSubEvent</servlet-name>
-  	<display-name>RegisterSubEvent</display-name>
-  	<description></description>
-  	<servlet-class>servlet.RegisterSubEvent</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>RegisterParticipant</servlet-name>
-  	<display-name>RegisterParticipant</display-name>
-  	<description></description>
-  	<servlet-class>servlet.RegisterParticipant</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>RegisterMainEvent</servlet-name>
-  	<url-pattern>/RegisterMainEvent</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>RegisterSubEvent</servlet-name>
-  	<url-pattern>/RegisterSubEvent</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>RegisterParticipant</servlet-name>
-  	<url-pattern>/RegisterParticipant</url-pattern>
-  </servlet-mapping>
+	<display-name>Archetype Created Web Application</display-name>
+	<servlet>
+		<servlet-name>RegisterMainEvent</servlet-name>
+		<display-name>RegisterMainEvent</display-name>
+		<description></description>
+		<servlet-class>servlet.RegisterMainEvent</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RegisterSubEvent</servlet-name>
+		<display-name>RegisterSubEvent</display-name>
+		<description></description>
+		<servlet-class>servlet.RegisterSubEvent</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RegisterParticipant</servlet-name>
+		<display-name>RegisterParticipant</display-name>
+		<description></description>
+		<servlet-class>servlet.RegisterParticipant</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RemoveParticipantByRollNo</servlet-name>
+		<display-name>RemoveParticipantByRollNo</display-name>
+		<description></description>
+		<servlet-class>servlet.RemoveParticipantByRollNo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegisterMainEvent</servlet-name>
+		<url-pattern>/RegisterMainEvent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RegisterSubEvent</servlet-name>
+		<url-pattern>/RegisterSubEvent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RegisterParticipant</servlet-name>
+		<url-pattern>/RegisterParticipant</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>RemoveParticipantByRollNo</servlet-name>
+		<url-pattern>/RemoveParticipantByRollNo</url-pattern>
+	</servlet-mapping>
 </web-app>

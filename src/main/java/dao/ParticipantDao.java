@@ -26,4 +26,18 @@ public class ParticipantDao {
 		}
 		return false;
 	}
+	
+	public boolean removeParticipantByRollNo(String p_rollno) {
+		String query = "delete from participant where p_rollno = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, p_rollno);
+			ps.execute();
+			
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

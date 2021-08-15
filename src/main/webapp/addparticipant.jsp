@@ -14,5 +14,9 @@
 		<input type="number" name="me_id" placeholder="Enter me_id">
 		<button type="submit">submit</button>
 	</form>
+	<form action="RemoveParticipantByRollNo" method="post">
+	<input type="text" name="p_rollno" placeholder="Enter rollno">
+	<button type="submit">remove</button>
+	</form>
 </body>
 </html>

@@ -26,4 +26,19 @@ public class MainEventDao {
 		}
 		return false;
 	}
+	
+	//for this to function add cascade on  delete on database server
+	public boolean removeMEventById(int me_id) {
+		String query = "delete from main_even where me_id = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, me_id);
+			ps.execute();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }

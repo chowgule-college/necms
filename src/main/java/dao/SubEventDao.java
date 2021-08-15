@@ -27,4 +27,21 @@ public class SubEventDao {
 		}
 		return false;
 	}
+	
+	
+	//for this to function add cascade on  delete on database server
+	public boolean removeSEventById(int se_id) {
+		String query = "delete from sub_event where se_id = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, se_id);
+			ps.execute();
+			
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
