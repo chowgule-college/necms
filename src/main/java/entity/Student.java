@@ -4,9 +4,9 @@ public class Student {
 
 	/* These are names of column and table from the database */
 	public static final String S_TNAME = "student";
-	public static final String S_ROLLNO = "";
-	public static final String S_NAME = "";
-	public static final String S_COURSE = "";
+	public static final String S_ROLLNO = "rollno";
+	public static final String S_NAME = "full_name";
+	public static final String S_COURSE = "course_name";
 	public static final String S_YEAR = "";
 
 	private String s_rollno;
@@ -17,12 +17,12 @@ public class Student {
 	public Student() {
 	}
 
-	public Student(String s_rollno, String s_name, String s_course, String s_year) {
+	public Student(String s_rollno, String s_name, String s_course) {
 		super();
 		this.s_rollno = s_rollno;
 		this.s_name = s_name;
 		this.s_course = s_course;
-		this.s_year = s_year;
+		this.s_year = "";
 	}
 
 	public String getS_rollno() {

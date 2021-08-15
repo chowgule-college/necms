@@ -6,54 +6,44 @@ public class Participant {
 	public static final String P_TNAME = "participant";
 	public static final String P_MEID = MainEvent.ME_ID;
 	public static final String P_SEID = SubEvent.SE_ID;
-	public static final String P_ID = "participant_id";
-	public static final String P_ROLLNO = "rollno";
-
-	private int me_id;
-	private int se_id;
-	private int p_id;
+	public static final String P_ROLLNO = "p_rollno";
+	
 	private String p_rollno;
+	private int se_id;
+	private int me_id;
 
 	public Participant() {
 	}
 
-	public Participant(String roll_no) {
-		this.p_rollno = roll_no;
+	public Participant(String p_rollno, int se_id, int me_id) {
+		super();
+		this.p_rollno = p_rollno;
+		this.se_id = se_id;
+		this.me_id = me_id;
 	}
 
-	public String getRoll_no() {
+	public String getP_rollno() {
 		return p_rollno;
 	}
 
-	public Participant(int event_id, int sevent_id, int participant_id, String roll_no) {
-		super();
-		this.me_id = event_id;
-		this.se_id = sevent_id;
-		this.p_id = participant_id;
-		this.p_rollno = roll_no;
+	public void setP_rollno(String p_rollno) {
+		this.p_rollno = p_rollno;
 	}
 
-	public int getEvent_id() {
-		return me_id;
-	}
-
-	public void setEvent_id(int event_id) {
-		this.me_id = event_id;
-	}
-
-	public int getSevent_id() {
+	public int getSe_id() {
 		return se_id;
 	}
 
-	public void setSevent_id(int sevent_id) {
-		this.se_id = sevent_id;
+	public void setSe_id(int se_id) {
+		this.se_id = se_id;
 	}
 
-	public int getParticipant_id() {
-		return p_id;
+	public int getMe_id() {
+		return me_id;
 	}
 
-	public void setParticipant_id(int participant_id) {
-		this.p_id = participant_id;
+	public void setMe_id(int me_id) {
+		this.me_id = me_id;
 	}
+
 }

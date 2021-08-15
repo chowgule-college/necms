@@ -4,9 +4,9 @@ public class SubEvent {
 
 	/* These are names of column and table from the database */
 	public static final String SE_TNAME = "sub_event";
-	public static final String SE_ID = "";
-	public static final String SE_NAME = "";
-	public static final String SE_HOURS = "";
+	public static final String SE_ID = "se_id";
+	public static final String SE_NAME = "se_name";
+	public static final String SE_HOURS = "se_hours";
 	public static final String SE_MEID = MainEvent.ME_ID;
 
 	private int se_id;
@@ -20,6 +20,13 @@ public class SubEvent {
 	public SubEvent(int se_id, String se_name, int se_hours, int me_id) {
 		super();
 		this.se_id = se_id;
+		this.se_name = se_name;
+		this.se_hours = se_hours;
+		this.me_id = me_id;
+	}
+	
+	public SubEvent(String se_name, int se_hours, int me_id) {
+		super();
 		this.se_name = se_name;
 		this.se_hours = se_hours;
 		this.me_id = me_id;

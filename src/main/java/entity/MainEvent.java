@@ -6,9 +6,9 @@ public class MainEvent {
 
 	/* These are names of column and table from the database */
 	public static final String ME_TNAME = "main_event";
-	public static final String ME_ID = "";
-	public static final String ME_NAME = "";
-	public static final String ME_DATE = "";
+	public static final String ME_ID = "me_id";
+	public static final String ME_NAME = "me_name";
+	public static final String ME_DATE = "me_date";
 
 	private int me_id;
 	private String me_name;
@@ -17,34 +17,43 @@ public class MainEvent {
 	public MainEvent() {
 	}
 
-	public MainEvent(int event_id, String event_name, Date event_date) {
-		this.me_id = event_id;
-		this.me_name = event_name;
-		this.me_date = event_date;
+	public MainEvent(int me_id, String me_name, Date me_date) {
+		super();
+		this.me_id = me_id;
+		this.me_name = me_name;
+		this.me_date = me_date;
 	}
 
-	public int getEvent_id() {
+	public MainEvent(String me_name, Date me_date) {
+		super();
+		this.me_name = me_name;
+		this.me_date = me_date;
+	}
+
+	public int getMe_id() {
 		return me_id;
 	}
 
-	public void setEvent_id(int event_id) {
-		this.me_id = event_id;
+	public void setMe_id(int me_id) {
+		this.me_id = me_id;
 	}
 
-	public String getEvent_name() {
+	public String getMe_name() {
 		return me_name;
 	}
 
-	public void setEvent_name(String event_name) {
-		this.me_name = event_name;
+	public void setMe_name(String me_name) {
+		this.me_name = me_name;
 	}
 
-	public Date getEvent_date() {
+	public Date getMe_date() {
 		return me_date;
 	}
 
-	public void setEvent_date(Date event_date) {
-		this.me_date = event_date;
+	public void setMe_date(Date me_date) {
+		this.me_date = me_date;
 	}
+
+	
 
 }
