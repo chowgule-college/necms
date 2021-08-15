@@ -2,6 +2,10 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import entity.Participant;
 
 public class ParticipantDao {
@@ -10,6 +14,10 @@ public class ParticipantDao {
 	public ParticipantDao(Connection con) {
 		super();
 		this.con = con;
+	}
+	
+	private Participant generateParticipantClass(ResultSet rs) throws SQLException {
+		return new Participant(rs.getString(1), rs.getInt(2), rs.getInt(3));
 	}
 	
 	public boolean insert(Participant p) {
@@ -39,5 +47,27 @@ public class ParticipantDao {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public List<Participant> getAllParticipantBySubAndMainEvent(int se_id, int me_id) {
+		List<Participant> me_list = null;
+		boolean initiateListFlag = false;
+		String query = "select * from participant where se_id = ? and me_id = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, se_id);
+			ps.setInt(2, me_id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				if (!(initiateListFlag)) {
+					me_list = new ArrayList<Participant>();
+					initiateListFlag = true;
+				}
+				me_list.add(generateParticipantClass(rs));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return me_list;
 	}
 }
