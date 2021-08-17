@@ -38,10 +38,9 @@
                     <option value="descending">Descending</option>
                 </select>
             </div>
-            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus"
-                data-bs-content="Add a new event">
-                <button type="button" class="btn btn-secondary ms-4" data-bs-toggle="modal"
-                    data-bs-target="#addNewEventModal">+</button></span>
+
+            <button type="button" class="btn btn-secondary ms-4" data-bs-toggle="modal"
+                data-bs-target="#addNewEventModal">+</button>
 
             <div class="modal" tabindex="-1" role="dialog" id="addNewEventModal">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -62,7 +61,7 @@
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Date of
                                     commencement</span>
-                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                <input type="date" class="form-control" aria-label="Sizing example input"
                                     aria-describedby="inputGroup-sizing-default">
                             </div>
                         </div>
