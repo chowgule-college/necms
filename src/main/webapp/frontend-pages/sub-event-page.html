@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Singing - Tastastu 2020</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1 class="mt-5">Non-Evaluative Credits Management</h1>
+
+
+
+
+        <nav aria-label="breadcrumb" class="mt-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="./all-events-page.html">All Events</a></li>
+                <li class="breadcrumb-item"><a href="./event-page.html">Tasastu 2020</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Singing</li>
+            </ol>
+        </nav>
+
+
+        <h4 class="mt-4">
+            Singing
+        </h4>
+
+        <div class="d-flex justify-content-end align-items-center mt-3">
+            <div class="filter">
+                <span>Filter by</span>
+                <select class="custom-select custom-select-sm" id="filter-field">
+                    <option selected value="name">Name</option>
+                    <option value="year">Roll no</option>
+                    <option value="id">Class</option>
+                </select>
+                <input class="form-group" type="text" placeholder="Search" id="filter-query">
+            </div>
+            <div class="sort ms-4">
+                <span>Sort by</span>
+                <select class="custom-select custom-select-sm" id="sort-field">
+                    <option selected value="name">Name</option>
+                    <option value="year">Roll no</option>
+                    <option value="id">Class</option>
+                </select>
+                <select class="custom-select custom-select-sm" id="sort-direction">
+                    <option selected value="ascending">Ascending</option>
+                    <option value="descending">Descending</option>
+                </select>
+            </div>
+
+
+
+
+            <button type="button" class="btn btn-secondary ms-4" data-bs-toggle="modal"
+                data-bs-target="#addNewSubEventModal">+</button>
+
+
+
+
+            <div class="modal" tabindex="-1" role="dialog" id="addNewSubEventModal">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add participants</h5>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"
+                                onclick="$('#addNewSubEventModal').modal('toggle')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="breadcrumb-item active">Add individually</p>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Roll no.</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-default" maxlength="8">
+                            </div>
+                            <div class=" d-flex justify-content-between">
+                                <h6>Name: Arun Das</h6>
+                                <button class="btn btn-secondary">Add</button>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <p class="breadcrumb-item active">Add bulk</p>
+                            <div class="mb-3">
+                                <label for="bulkAddTextArea" class="form-label">Paste comma separated Roll nos.</label>
+                                <textarea class="form-control" id="bulkAddTextArea" rows="10"></textarea>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                    data-bs-target="#parsedRollNos">Parse data</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="modal" tabindex="-1" role="dialog" id="parsedRollNos">
+                <div class="modal-dialog  modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Bulk add participants</h5>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"
+                                onclick="$('#parsedRollNos').modal('toggle')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="breadcrumb-item active">Identified entries</p>
+
+                            <table class="table mt-5">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col" colspan="2">Participant names</th>
+                                        <th scope="col">Roll no</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td colspan="2">Gavin Pereira</td>
+                                        <td>SU190217</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td colspan="2">Rahul Morajker</td>
+                                        <td>SU190002</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td colspan="2">Aidan Vaz</td>
+                                        <td>SU190333</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                    data-bs-target="#" onclick="$('#parsedRollNos').modal('toggle')">Go back &
+                                    Rectify</button>
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                    data-bs-target="#">Parse data</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col" colspan="2">Participant names</th>
+                    <th scope="col">Roll no</th>
+                    <th scope="col">Class</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td colspan="2">Sanket Paresh</td>
+                    <td>SU190102</td>
+                    <td>FYBSc</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td colspan="2">Sai Body</td>
+                    <td>SU190002</td>
+                    <td>SYBA</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">JK Talpade</td>
+                    <td>SU190147</td>
+                    <td>TYBVoc</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-center mt-5">
+            <button type="button" class="btn btn-secondary">More</button>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>
