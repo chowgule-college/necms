@@ -54,6 +54,11 @@ public class MainEvent {
 		this.me_date = me_date;
 	}
 
+	@Override
+	public String toString() {
+		return "MainEvent [me_id=" + me_id + ", me_name=" + me_name + ", me_date=" + me_date + "]";
+	}
+
 	
 
 }

@@ -19,20 +19,20 @@ public class StudentDao {
 	}
 
 	private Student generateStudentClass(ResultSet rs) throws SQLException {
-		return new Student(rs.getString(1), rs.getString(2), rs.getString(3));
+		return new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
 	}
 
 	public List<Student> getStudent(List<Participant> participants) {
 		boolean initiateListFlag = false;
 		List<Student> students = null;
-		if(participants.size() > 0) {
+		if (participants.size() > 0) {
 			String list = "'" + participants.get(0).getP_rollno() + "'";
 			if (participants.size() > 1) {
 				for (int i = 1; i < participants.size(); i++) {
 					list += " ,'" + participants.get(i).getP_rollno() + "'";
 				}
 			}
-			
+
 			String query = "select * from student where rollno in (" + list + ")";
 
 			try {
@@ -51,4 +51,5 @@ public class StudentDao {
 		}
 		return students;
 	}
+	
 }

@@ -17,12 +17,12 @@ public class Student {
 	public Student() {
 	}
 
-	public Student(String s_rollno, String s_name, String s_course) {
+	public Student(String s_rollno, String s_name, String s_course, String s_year) {
 		super();
 		this.s_rollno = s_rollno;
 		this.s_name = s_name;
 		this.s_course = s_course;
-		this.s_year = "";
+		this.s_year = s_year;
 	}
 
 	public String getS_rollno() {
