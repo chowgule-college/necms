@@ -62,9 +62,24 @@
 				url : "RegisterMainEvent?me_name=" + me_name + "&&me_date="
 						+ me_date,
 				success : function(data) {
-					alert('product success fully added')
+					alert('Main Event Added success fully added')
 					$("#addNewEventModal").modal("hide");
 					loadTable();
+				}
+			});
+		}
+		function addNewSubEvent(me_id) {
+			var se_name = document.getElementById("se_name").value;
+			var se_hours = document.getElementById("se_hours").value;
+
+			$.ajax({
+				type : "POST",
+				url : "RegisterSubEvent?se_name=" + se_name + "&&se_hours="
+						+ se_hours + "&&me_id=" + me_id,
+				success : function(data) {
+					alert('Sub Event Added success fully added')
+					$("#addNewSubEventModal").modal("hide");
+					loadSubEventTable(me_id);
 				}
 			});
 		}
