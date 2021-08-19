@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="entity.MainEvent"%>
 <%@page import="java.util.List"%>
 <%@page import="helper.ConnectionProvider"%>
@@ -22,9 +23,11 @@ int count = 0;
 <c:forEach var="i" begin="1" end="<%=meList.size()%>">
 				<%
 				me = meList.get(count);
+				SimpleDateFormat df = new SimpleDateFormat("yyyy");
+				String year = df.format(me.getMe_date());
 				%>
 
-				<tr>
+				<tr onclick="loadSubEvent('<%=me.getMe_id()%>','<%=me.getMe_name()%>', '<%= year%>')">
 					<th scope="row"><%=count%></th>
 					<td colspan="2"><%=me.getMe_name()%></td>
 					<td><%=me.getMe_date().toString()%></td>

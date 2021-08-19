@@ -7,7 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NECMS</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 </head>
 
 <body>
@@ -31,16 +33,18 @@
 			xhr.send();
 
 		}
-		
-		function loadTable(){
+
+		function loadTable() {
 			var searchCategory = document.getElementById("filter-field").value;
 			var searchStr = document.getElementById("filter-query").value;
 			var orderCategory = document.getElementById("sort-field").value;
 			var orderType = document.getElementById("sort-direction").value;
-			
+
 			$.ajax({
 				type : "POST",
-				url : "main-event-table.jsp?searchCategory=" + searchCategory + "&&searchStr=" + searchStr + "&&orderCategory=" + orderCategory + "&&orderType=" + orderType,
+				url : "main-event-table.jsp?searchCategory=" + searchCategory
+						+ "&&searchStr=" + searchStr + "&&orderCategory="
+						+ orderCategory + "&&orderType=" + orderType,
 				processData : false,
 				contentType : false,
 				success : function(data) {
@@ -49,13 +53,14 @@
 			});
 		}
 
-		function addNewEvent() {
+		function addNewMainEvent() {
 			var me_name = document.getElementById("me_name").value;
 			var me_date = document.getElementById("me_date").value;
-			
+
 			$.ajax({
 				type : "POST",
-				url : "RegisterMainEvent?me_name=" +  me_name + "&&me_date=" + me_date,
+				url : "RegisterMainEvent?me_name=" + me_name + "&&me_date="
+						+ me_date,
 				success : function(data) {
 					alert('product success fully added')
 					$("#addNewEventModal").modal("hide");
@@ -63,7 +68,42 @@
 				}
 			});
 		}
-		
+
+		function loadSubEvent(me_id, me_name, me_year) {
+			$.ajax({
+				type : "POST",
+				url : "sub-event.jsp?me_name=" + me_name + "&&me_year="
+						+ me_year + "&&me_id=" + me_id,
+				processData : false,
+				contentType : false,
+				success : function(data) {
+					document.getElementById("content-area").innerHTML = data;
+					loadSubEventTable(me_id)
+				}
+			});
+
+		}
+
+		function loadSubEventTable(me_id) {
+			var searchCategory = document.getElementById("filter-field").value;
+			var searchStr = document.getElementById("filter-query").value;
+			var orderCategory = document.getElementById("sort-field").value;
+			var orderType = document.getElementById("sort-direction").value;
+
+			$.ajax({
+				type : "POST",
+				url : "sub-event-table.jsp?me_id=" + me_id
+						+ "&&searchCategory=" + searchCategory + "&&searchStr="
+						+ searchStr + "&&orderCategory=" + orderCategory
+						+ "&&orderType=" + orderType,
+				processData : false,
+				contentType : false,
+				success : function(data) {
+					document.getElementById("table-content").innerHTML = data;
+				}
+			});
+		}
+
 		loadMainEvent()
 	</script>
 </body>

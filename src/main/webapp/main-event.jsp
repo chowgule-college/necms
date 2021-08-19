@@ -20,7 +20,7 @@ int count = 0;
 	<div class="d-flex justify-content-end align-items-center mt-3">
 		<div class="filter">
 			<span>Filter by</span> <select class="custom-select custom-select-sm"
-				id="filter-field">
+				id="filter-field" onchange="loadTable()">
 				<option selected value="NAME">Name</option>
 				<option value="DATE">Year</option>
 				<option value="ID">ID</option>
@@ -58,17 +58,17 @@ int count = 0;
 							<span class="input-group-text" id="inputGroup-sizing-default">Name</span>
 							<input type="text" class="form-control"
 								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-default">
+								aria-describedby="inputGroup-sizing-default" id="me_name">
 						</div>
 						<div class="input-group mb-3">
 							<span class="input-group-text" id="inputGroup-sizing-default">Date
 								of commencement</span> <input type="date" class="form-control"
 								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-default">
+								aria-describedby="inputGroup-sizing-default" id="me_date">
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary">Save
+						<button type="button" class="btn btn-secondary" onclick="addNewMainEvent()">Save
 							event</button>
 					</div>
 				</div>
