@@ -23,7 +23,7 @@ int count = 0;
 				se = seList.get(count);
 				%>
 
-				<tr>
+				<tr onclick="loadParticipant('<%= me_id%>', '<%= se.getSe_id()%>', '<%=se.getSe_name() %>')">
                     <th scope="row"><%=count %></th>
                     <td colspan="2"><%=se.getSe_name() %></td>
                     <td><%=se.getSe_hours() %></td>
