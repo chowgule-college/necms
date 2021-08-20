@@ -76,11 +76,13 @@ public class MainEventDao {
 
 	public List<MainEvent> getMainEvents(String searchCategory, String searchStr, String orderCategory,
 			String orderType) {
+	
 		List<MainEvent> meList = getAllMainEvents();
 
 		meList = getMainEventBySearch(searchCategory, searchStr, meList);
 
 		meList = getMainEventByOrder(orderCategory, orderType, meList);
+		
 
 		return meList;
 	}

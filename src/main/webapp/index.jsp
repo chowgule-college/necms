@@ -39,7 +39,7 @@
 			var searchStr = document.getElementById("filter-query").value;
 			var orderCategory = document.getElementById("sort-field").value;
 			var orderType = document.getElementById("sort-direction").value;
-
+			
 			$.ajax({
 				type : "POST",
 				url : "main-event-table.jsp?searchCategory=" + searchCategory
