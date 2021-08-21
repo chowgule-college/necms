@@ -75,8 +75,63 @@ int count = 0;
 			</div>
 		</div>
 
+            <!-- Modal to Edit Event  -->
 
+            <div class="modal" tabindex="-1" role="dialog" id="editRow">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit entry</h5>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"
+                                onclick="$('#editRow').modal('toggle')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-default">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Date of
+                                    commencement</span>
+                                <input type="date" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-default">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+<!-- Modal to Delete Event  -->
+
+            <div class="modal" tabindex="-1" role="dialog" id="deleteRow">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete entry</h5>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"
+                                onclick="$('#deleteRow').modal('toggle')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <span id="inputGroup-sizing-default">Are you sure?</span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                onclick="$('#deleteRow').modal('toggle')">No</button>
+                            <button type="button" class="btn btn-secondary">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 	</div>
 	<table class="table mt-5">
@@ -86,6 +141,7 @@ int count = 0;
 				<th scope="col" colspan="2">Event name</th>
 				<th scope="col">Date of commencement</th>
 				<th scope="col">Event ID</th>
+				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody id="table-content">

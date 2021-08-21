@@ -27,11 +27,15 @@ int count = 0;
 				String year = df.format(me.getMe_date());
 				%>
 
-				<tr onclick="loadSubEvent('<%=me.getMe_id()%>','<%=me.getMe_name()%>', '<%= year%>')">
+				<tr >
 					<th scope="row"><%=count%></th>
-					<td colspan="2"><%=me.getMe_name()%></td>
+					<td colspan="2" onclick="loadSubEvent('<%=me.getMe_id()%>','<%=me.getMe_name()%>', '<%= year%>')"><%=me.getMe_name()%></td>
 					<td><%=me.getMe_date().toString()%></td>
 					<td><%=me.getMe_id()%></td>
+					<td>
+                        <i class="fas fa-pen-square" data-bs-toggle="modal" data-bs-target="#editRow"></i>
+                        <i class="fas fa-minus-square" data-bs-toggle="modal" data-bs-target="#deleteRow"></i>
+                    </td>
 				</tr>
 				<%
 				count++;

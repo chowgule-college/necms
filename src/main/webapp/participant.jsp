@@ -162,8 +162,61 @@
 				</div>
 			</div>
 		</div>
+		
+ <!-- Modal to Edit Participant -->
 
+            <div class="modal" tabindex="-1" role="dialog" id="editRow">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit entry</h5>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"
+                                onclick="$('#editRow').modal('toggle')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Roll no.</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-default" maxlength="8">
+                            </div>
+                            <div class=" d-flex justify-content-between">
+                                <h6>Name: Arun Das</h6>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+	
+	<!-- Modal to Delete Participant -->
 
+            <div class="modal" tabindex="-1" role="dialog" id="deleteRow">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete entry</h5>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"
+                                onclick="$('#deleteRow').modal('toggle')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <span id="inputGroup-sizing-default">Are you sure?</span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                onclick="$('#deleteRow').modal('toggle')">No</button>
+                            <button type="button" class="btn btn-secondary">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 	</div>
 	<table class="table mt-5">
@@ -174,6 +227,7 @@
 				<th scope="col">Roll no</th>
 				<th scope="col">Year</th>
 				<th scope="col">Class</th>
+				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody id="table-content">

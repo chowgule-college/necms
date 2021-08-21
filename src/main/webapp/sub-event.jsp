@@ -97,8 +97,62 @@
                 </div>
             </div>
 
+<!-- Modal to Edit Sub-Event -->
 
+            <div class="modal" tabindex="-1" role="dialog" id="editRow">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit entry</h5>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"
+                                onclick="$('#editRow').modal('toggle')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Sub-event name</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-default">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Number of hours</span>
+                                <input type="number" min=0 class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-default" placeholder="0">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary">Save sub-event</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+<!-- Modal to Delete Sub-Event -->
 
+            <div class="modal" tabindex="-1" role="dialog" id="deleteRow">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete entry</h5>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"
+                                onclick="$('#deleteRow').modal('toggle')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <span id="inputGroup-sizing-default">Are you sure?</span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                onclick="$('#deleteRow').modal('toggle')">No</button>
+                            <button type="button" class="btn btn-secondary">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
         <table class="table mt-5">
@@ -108,6 +162,7 @@
                     <th scope="col" colspan="2">Sub-event name</th>
                     <th scope="col">Hours</th>
                     <th scope="col">Sub-event ID</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody id="table-content">

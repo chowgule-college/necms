@@ -34,6 +34,10 @@ int count = 0;
 		<td><%=student.getS_rollno()%></td>
 		<td><%=student.getS_year().split("-")[0]%></td>
 		<td><%=student.getS_course()%></td>
+		 <td>
+                        <i class="fas fa-pen-square" data-bs-toggle="modal" data-bs-target="#editRow"></i>
+                        <i class="fas fa-minus-square" data-bs-toggle="modal" data-bs-target="#deleteRow"></i>
+                    </td>
 	</tr>
 	<%
 	count++;
