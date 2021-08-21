@@ -7,6 +7,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Singing - Tastastu 2020</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+        i.fas {
+            font-size: 25px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -58,18 +66,18 @@
 
 
             <button type="button" class="btn btn-secondary ms-4" data-bs-toggle="modal"
-                data-bs-target="#addNewSubEventModal">+</button>
+                data-bs-target="#addNewParticpantsModal">+</button>
 
 
+            <!-- Modal to Add Participants -->
 
-
-            <div class="modal" tabindex="-1" role="dialog" id="addNewSubEventModal">
+            <div class="modal" tabindex="-1" role="dialog" id="addNewParticpantsModal">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Add participants</h5>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"
-                                onclick="$('#addNewSubEventModal').modal('toggle')">
+                                onclick="$('#addNewParticpantsModal').modal('toggle')">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -100,8 +108,7 @@
                 </div>
             </div>
 
-
-
+            <!-- Modal to Display Parsed Roll Nos. -->
 
             <div class="modal" tabindex="-1" role="dialog" id="parsedRollNos">
                 <div class="modal-dialog  modal-lg modal-dialog-centered" role="document">
@@ -122,6 +129,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col" colspan="2">Participant names</th>
                                         <th scope="col">Roll no</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -158,6 +166,67 @@
 
 
 
+            <!-- Modal to Edit Participant -->
+
+            <div class="modal" tabindex="-1" role="dialog" id="editRow">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit entry</h5>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"
+                                onclick="$('#editRow').modal('toggle')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Roll no.</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-default" maxlength="8">
+                            </div>
+                            <div class=" d-flex justify-content-between">
+                                <h6>Name: Arun Das</h6>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!-- Modal to Delete Participant -->
+
+            <div class="modal" tabindex="-1" role="dialog" id="deleteRow">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete entry</h5>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"
+                                onclick="$('#deleteRow').modal('toggle')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <span id="inputGroup-sizing-default">Are you sure?</span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                onclick="$('#deleteRow').modal('toggle')">No</button>
+                            <button type="button" class="btn btn-secondary">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
         </div>
         <table class="table mt-5">
             <thead>
@@ -166,6 +235,7 @@
                     <th scope="col" colspan="2">Participant names</th>
                     <th scope="col">Roll no</th>
                     <th scope="col">Class</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -174,18 +244,30 @@
                     <td colspan="2">Sanket Paresh</td>
                     <td>SU190102</td>
                     <td>FYBSc</td>
+                    <td>
+                        <i class="fas fa-pen-square" data-bs-toggle="modal" data-bs-target="#editRow"></i>
+                        <i class="fas fa-minus-square" data-bs-toggle="modal" data-bs-target="#deleteRow"></i>
+                    </td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
                     <td colspan="2">Sai Body</td>
                     <td>SU190002</td>
                     <td>SYBA</td>
+                    <td>
+                        <i class="fas fa-pen-square" data-bs-toggle="modal" data-bs-target="#editRow"></i>
+                        <i class="fas fa-minus-square" data-bs-toggle="modal" data-bs-target="#deleteRow"></i>
+                    </td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
                     <td colspan="2">JK Talpade</td>
                     <td>SU190147</td>
                     <td>TYBVoc</td>
+                    <td>
+                        <i class="fas fa-pen-square" data-bs-toggle="modal" data-bs-target="#editRow"></i>
+                        <i class="fas fa-minus-square" data-bs-toggle="modal" data-bs-target="#deleteRow"></i>
+                    </td>
                 </tr>
             </tbody>
         </table>
