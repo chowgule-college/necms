@@ -7,6 +7,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>All Events</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <style>
+        i.fas {
+            font-size: 25px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
+
+
 </head>
 
 <body>
@@ -42,6 +53,9 @@
             <button type="button" class="btn btn-secondary ms-4" data-bs-toggle="modal"
                 data-bs-target="#addNewEventModal">+</button>
 
+
+            <!-- Modal to Add New Event  -->
+
             <div class="modal" tabindex="-1" role="dialog" id="addNewEventModal">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -73,6 +87,67 @@
             </div>
 
 
+            <!-- Modal to Edit Event  -->
+
+            <div class="modal" tabindex="-1" role="dialog" id="editRow">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit entry</h5>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"
+                                onclick="$('#editRow').modal('toggle')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-default">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Date of
+                                    commencement</span>
+                                <input type="date" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-default">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Modal to Delete Event  -->
+
+            <div class="modal" tabindex="-1" role="dialog" id="deleteRow">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete entry</h5>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"
+                                onclick="$('#deleteRow').modal('toggle')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <span id="inputGroup-sizing-default">Are you sure?</span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                onclick="$('#deleteRow').modal('toggle')">No</button>
+                            <button type="button" class="btn btn-secondary">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
 
         </div>
@@ -83,6 +158,7 @@
                     <th scope="col" colspan="2">Event name</th>
                     <th scope="col">Date of commencement</th>
                     <th scope="col">Event ID</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -91,18 +167,30 @@
                     <td colspan="2">Tatastu</td>
                     <td>1 December 2020</td>
                     <td>20001</td>
+                    <td>
+                        <i class="fas fa-pen-square" data-bs-toggle="modal" data-bs-target="#editRow"></i>
+                        <i class="fas fa-minus-square" data-bs-toggle="modal" data-bs-target="#deleteRow"></i>
+                    </td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
                     <td colspan="2">Irix</td>
                     <td>21 December 2020</td>
                     <td>20002</td>
+                    <td>
+                        <i class="fas fa-pen-square" data-bs-toggle="modal" data-bs-target="#editRow"></i>
+                        <i class="fas fa-minus-square" data-bs-toggle="modal" data-bs-target="#deleteRow"></i>
+                    </td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
                     <td colspan="2">Pegasus</td>
                     <td>5 January 2021</td>
                     <td>21001</td>
+                    <td>
+                        <i class="fas fa-pen-square" data-bs-toggle="modal" data-bs-target="#editRow"></i>
+                        <i class="fas fa-minus-square" data-bs-toggle="modal" data-bs-target="#deleteRow"></i>
+                    </td>
                 </tr>
             </tbody>
         </table>
