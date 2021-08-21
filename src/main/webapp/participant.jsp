@@ -80,11 +80,11 @@
 							<span class="input-group-text" id="inputGroup-sizing-default">Roll
 								no.</span> <input type="text" class="form-control"
 								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-default" maxlength="8" id="s_rollno" onkeyup="checkRollNo('<%= me_id%>', '<%= se_id%>')">
+								aria-describedby="inputGroup-sizing-default" maxlength="8" id="s_rollno" onkeyup="checkRollNo('<%= me_id%>', '<%= se_id%>', false)">
 						</div>
 						<div class=" d-flex justify-content-between">
 							<h6 id="rollno-status"></h6>
-							<button class="btn btn-secondary">Add</button>
+							<button class="btn btn-secondary" onclick="checkRollNo('<%= me_id%>', '<%= se_id%>', true)">Add</button>
 						</div>
 					</div>
 					<div class="modal-body">

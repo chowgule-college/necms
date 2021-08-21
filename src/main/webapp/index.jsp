@@ -164,7 +164,7 @@ i.fas {
 			});
 		}
 
-		function checkRollNo(me_id, se_id) {
+		function checkRollNo(me_id, se_id, addParticipantStatus) {
 			var s_rollno = document.getElementById("s_rollno").value;
 			$.ajax({
 				type : "POST",
@@ -173,7 +173,35 @@ i.fas {
 				processData : false,
 				contentType : false,
 				success : function(data) {
-					document.getElementById("rollno-status").innerHTML = data;
+					if (data == 0){
+						document.getElementById("rollno-status").innerHTML = "Student Not Found!";
+					}else if (data == 1){
+						document.getElementById("rollno-status").innerHTML = "Student Already Exists!"
+					}else {
+						document.getElementById("rollno-status").innerHTML = data;
+						
+						if (addParticipantStatus){
+							addNewParticipant(me_id, se_id, s_rollno);
+						}
+					}	
+				}
+			});
+		}
+		
+		function addNewParticipant(me_id, se_id, s_rollno){
+			 $.ajax({
+				type : "POST",
+				url : "RegisterParticipant?s_rollno=" + s_rollno + "&&me_id=" + me_id
+						+ "&&se_id=" + se_id,
+				processData : false,
+				contentType : false,
+				success : function(data) {
+					if (data == 1){
+						$("#addNewSubEventModal").modal("hide");
+						loadParticipantTable(me_id, se_id);
+					}else{
+						document.getElementById("rollno-status").innerHTML = "Something Went Wrong!";
+					}
 				}
 			});
 		}

@@ -26,7 +26,7 @@ public class ParticipantDao {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, p.getP_rollno());
 			ps.setInt(2, p.getSe_id());
-			ps.setInt(3, p.getSe_id());
+			ps.setInt(3, p.getMe_id());
 			ps.execute();
 			return true;
 		}catch (Exception e) {

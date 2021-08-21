@@ -22,13 +22,13 @@ public class RegisterParticipant extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		ParticipantDao dao = new ParticipantDao(ConnectionProvider.getConnection());
 		if (dao.insert(new Participant(
-				request.getParameter("p_rollno"),
+				request.getParameter("s_rollno"),
 				Integer.parseInt(request.getParameter("se_id")),
 				Integer.parseInt(request.getParameter("me_id"))
 				))) 
-			out.println("success!");
+			out.println("1");
 		else
-			out.println("error");
+			out.println("0");
 	}
 
 }

@@ -29,14 +29,18 @@ public class CheckStudent extends HttpServlet {
 		int se_id = Integer.parseInt(request.getParameter("se_id"));
 		boolean exists = false;
 		ParticipantDao pDao = new ParticipantDao(ConnectionProvider.getConnection());
+		try {
 		List<Participant> pList = pDao.getAllParticipantBySubAndMainEvent(se_id, me_id);
 		for (Participant p : pList) {
 			if (p.getP_rollno().equalsIgnoreCase(request.getParameter("s_rollno"))) {
 				exists = true;
 			}
 		}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		if (exists) {
-			response.getWriter().println("Student Already Exists!");
+			response.getWriter().println("1");
 		} else {
 			StudentDao dao = new StudentDao(ConnectionProvider.getConnection());
 			Student student = dao.getStudentByRollNo(request.getParameter("s_rollno"));
@@ -44,7 +48,7 @@ public class CheckStudent extends HttpServlet {
 			if (student != null) {
 				response.getWriter().println(student.getS_name());
 			} else {
-				response.getWriter().println("Student Not Found!");
+				response.getWriter().println("0");
 			}
 		}
 	}
