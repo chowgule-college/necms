@@ -17,16 +17,10 @@ import entity.SubEvent;
 
 public class StudentDao {
 	private Connection con;
-	private int month;
-	private int year;
 
 	public StudentDao(Connection con) {
 		super();
 		this.con = con;
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(new Date());
-		this.month = cal.get(Calendar.MONTH);
-		this.year = Calendar.getInstance().get(Calendar.YEAR);
 	}
 
 	private Student generateStudentClass(ResultSet rs) throws SQLException {
@@ -190,6 +184,20 @@ public class StudentDao {
 		}
 
 		return orderedStudentList;
+	}
+	
+	public Student getStudentByRollNo(String s_rollno) {
+		String query = "select * from student where rollno = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, s_rollno);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next())
+			return generateStudentClass(rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

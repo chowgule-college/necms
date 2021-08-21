@@ -28,6 +28,12 @@
 		<description></description>
 		<servlet-class>servlet.RemoveParticipantByRollNo</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>CheckStudent</servlet-name>
+		<display-name>CheckStudent</display-name>
+		<description></description>
+		<servlet-class>servlet.CheckStudent</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>RegisterMainEvent</servlet-name>
 		<url-pattern>/RegisterMainEvent</url-pattern>
@@ -44,5 +50,9 @@
 	<servlet-mapping>
 		<servlet-name>RemoveParticipantByRollNo</servlet-name>
 		<url-pattern>/RemoveParticipantByRollNo</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CheckStudent</servlet-name>
+		<url-pattern>/CheckStudent</url-pattern>
 	</servlet-mapping>
 </web-app>

@@ -39,7 +39,7 @@
 			var searchStr = document.getElementById("filter-query").value;
 			var orderCategory = document.getElementById("sort-field").value;
 			var orderType = document.getElementById("sort-direction").value;
-			
+
 			$.ajax({
 				type : "POST",
 				url : "main-event-table.jsp?searchCategory=" + searchCategory
@@ -98,13 +98,13 @@
 			});
 
 		}
-		
-		function loadParticipant(me_id, se_id, se_name){
+
+		function loadParticipant(me_id, se_id, se_name) {
 			var me_title = document.getElementById("me_title").innerHTML;
 			$.ajax({
 				type : "POST",
-				url : "participant.jsp?me_id=" + me_id + "&&se_id="
-						+ se_id + "&&me_title=" + me_title + "&&se_name=" + se_name ,
+				url : "participant.jsp?me_id=" + me_id + "&&se_id=" + se_id
+						+ "&&me_title=" + me_title + "&&se_name=" + se_name,
 				processData : false,
 				contentType : false,
 				success : function(data) {
@@ -133,23 +133,37 @@
 				}
 			});
 		}
-		
-		function loadParticipantTable(me_id, se_id){
+
+		function loadParticipantTable(me_id, se_id) {
 			var searchCategory = document.getElementById("filter-field").value;
 			var searchStr = document.getElementById("filter-query").value;
 			var orderCategory = document.getElementById("sort-field").value;
 			var orderType = document.getElementById("sort-direction").value;
-			
+
 			$.ajax({
 				type : "POST",
-				url : "participant-table.jsp?me_id=" + me_id
-						+ "&&se_id=" + se_id + "&&searchCategory=" + searchCategory + "&&searchStr="
-						+ searchStr + "&&orderCategory=" + orderCategory
-						+ "&&orderType=" + orderType,
+				url : "participant-table.jsp?me_id=" + me_id + "&&se_id="
+						+ se_id + "&&searchCategory=" + searchCategory
+						+ "&&searchStr=" + searchStr + "&&orderCategory="
+						+ orderCategory + "&&orderType=" + orderType,
 				processData : false,
 				contentType : false,
 				success : function(data) {
 					document.getElementById("table-content").innerHTML = data;
+				}
+			});
+		}
+
+		function checkRollNo(me_id, se_id) {
+			var s_rollno = document.getElementById("s_rollno").value;
+			$.ajax({
+				type : "POST",
+				url : "CheckStudent?s_rollno=" + s_rollno + "&&me_id=" + me_id
+						+ "&&se_id=" + se_id,
+				processData : false,
+				contentType : false,
+				success : function(data) {
+					document.getElementById("rollno-status").innerHTML = data;
 				}
 			});
 		}

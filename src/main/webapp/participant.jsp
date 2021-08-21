@@ -80,10 +80,10 @@
 							<span class="input-group-text" id="inputGroup-sizing-default">Roll
 								no.</span> <input type="text" class="form-control"
 								aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-default" maxlength="8">
+								aria-describedby="inputGroup-sizing-default" maxlength="8" id="s_rollno" onkeyup="checkRollNo('<%= me_id%>', '<%= se_id%>')">
 						</div>
 						<div class=" d-flex justify-content-between">
-							<h6>Name: Arun Das</h6>
+							<h6 id="rollno-status"></h6>
 							<button class="btn btn-secondary">Add</button>
 						</div>
 					</div>
