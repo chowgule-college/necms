@@ -15,11 +15,11 @@ public class ParticipantDao {
 		super();
 		this.con = con;
 	}
-	
+
 	private Participant generateParticipantClass(ResultSet rs) throws SQLException {
 		return new Participant(rs.getString(1), rs.getInt(2), rs.getInt(3));
 	}
-	
+
 	public boolean insert(Participant p) {
 		String query = " insert into participant (p_rollno, se_id, me_id) values(?, ?, ?)";
 		try {
@@ -29,26 +29,26 @@ public class ParticipantDao {
 			ps.setInt(3, p.getMe_id());
 			ps.execute();
 			return true;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;
 	}
-	
+
 	public boolean removeParticipantByRollNo(String p_rollno) {
 		String query = "delete from participant where p_rollno = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, p_rollno);
 			ps.execute();
-			
+
 			return true;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;
 	}
-	
+
 	public List<Participant> getAllParticipantBySubAndMainEvent(int se_id, int me_id) {
 		List<Participant> me_list = null;
 		boolean initiateListFlag = false;
@@ -69,5 +69,34 @@ public class ParticipantDao {
 			e.printStackTrace();
 		}
 		return me_list;
+	}
+
+	public boolean addBulkParticipants(int se_id, int me_id, String[] p_rollnoList) {
+		if (p_rollnoList.length > 0) {
+			String query = "insert into participant (p_rollno, se_id, me_id) values (?,?,?)";
+			if (p_rollnoList.length > 1) {
+				for (int i = 1; i < p_rollnoList.length; i++) {
+					query += ", (?,?,?)";
+				}
+			}
+			
+			try {
+				PreparedStatement ps = con.prepareStatement(query);
+				int count = 0;
+				for (int i = 1; i <= p_rollnoList.length * 3; i += 3) {
+					ps.setString(i, p_rollnoList[count]);
+					ps.setInt(i + 1, se_id);
+					ps.setInt(i + 2, me_id);
+					count++ ;
+				}
+				ps.execute();
+				return true;
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return false;
 	}
 }

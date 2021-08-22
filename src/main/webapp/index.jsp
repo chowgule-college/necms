@@ -205,6 +205,41 @@ i.fas {
 				}
 			});
 		}
+		
+		function addNewParticipantsInBulk(me_id, se_id){
+			var s_rollnoList = document.getElementById("bulkAddTextArea").value;
+			$.ajax({
+				type : "POST",
+				url : "participant-bulk-table.jsp?s_rollnoList=" + s_rollnoList + "&&me_id=" + me_id
+						+ "&&se_id=" + se_id,
+				processData : false,
+				contentType : false,
+				success : function(data) {
+					document.getElementById("table-bulk-content").innerHTML = data;
+					$("#parsedRollNos").modal("show");
+				}
+			});
+		}
+
+		function addBulkParticipants(me_id, se_id, s_rollnoList){
+			$.ajax({
+				type : "POST",
+				url : "RegisterBulkParticipants?s_rollnoList=" + s_rollnoList + "&&me_id=" + me_id
+						+ "&&se_id=" + se_id,
+				processData : false,
+				contentType : false,
+				success : function(data) {
+					if(data == 1){
+						$("#parsedRollNos").modal("hide");
+						$("#addNewSubEventModal").modal("hide");
+						loadParticipantTable(me_id, se_id);
+					}else{
+						alert("something went wrong!");
+					}
+				}
+			});
+		}
+
 
 		loadMainEvent()
 	</script>

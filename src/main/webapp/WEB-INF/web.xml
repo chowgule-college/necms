@@ -34,6 +34,12 @@
 		<description></description>
 		<servlet-class>servlet.CheckStudent</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>RegisterBulkParticipants</servlet-name>
+		<display-name>RegisterBulkParticipants</display-name>
+		<description></description>
+		<servlet-class>servlet.RegisterBulkParticipants</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>RegisterMainEvent</servlet-name>
 		<url-pattern>/RegisterMainEvent</url-pattern>
@@ -54,5 +60,9 @@
 	<servlet-mapping>
 		<servlet-name>CheckStudent</servlet-name>
 		<url-pattern>/CheckStudent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RegisterBulkParticipants</servlet-name>
+		<url-pattern>/RegisterBulkParticipants</url-pattern>
 	</servlet-mapping>
 </web-app>

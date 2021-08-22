@@ -97,14 +97,14 @@ public class MainEventDao {
 			}
 		}
 		if (searchCategory.equals("DATE")) {
-			for (int i = 0; i < sortedMeList.size(); i++) {
-				if (sortedMeList.get(i).getMe_date().toString().contains(searchStr))
+			for (int i = 0; i < meList.size(); i++) {
+				if (meList.get(i).getMe_date().toString().contains(searchStr))
 					sortedMeList.add(meList.get(i));
 			}
 		}
 		if (searchCategory.equals("ID")) {
-			for (int i = 0; i < sortedMeList.size(); i++) {
-				if (String.valueOf(sortedMeList.get(i).getMe_id()).contains(searchStr))
+			for (int i = 0; i < meList.size(); i++) {
+				if (String.valueOf(meList.get(i).getMe_id()).contains(searchStr))
 					sortedMeList.add(meList.get(i));
 			}
 		}
@@ -119,7 +119,7 @@ public class MainEventDao {
 			if (orderCategory.equals("NAME")) {
 				Collections.sort(orderedMeList, new Comparator<MainEvent>() {
 					public int compare(MainEvent o1, MainEvent o2) {
-						return o1.getMe_name().compareTo(o2.getMe_name());
+						return o1.getMe_name().compareToIgnoreCase(o2.getMe_name());
 					}});
 			}
 			if (orderCategory.equals("DATE")) {
@@ -152,7 +152,7 @@ public class MainEventDao {
 			if (orderCategory.equals("NAME")) {
 				Collections.sort(orderedMeList, new Comparator<MainEvent>() {
 					public int compare(MainEvent o1, MainEvent o2) {
-						return -o1.getMe_name().compareTo(o2.getMe_name());
+						return -o1.getMe_name().compareToIgnoreCase(o2.getMe_name());
 					}});
 			}
 			if (orderCategory.equals("DATE")) {

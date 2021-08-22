@@ -199,5 +199,34 @@ public class StudentDao {
 		}
 		return null;
 	}
+	
+	
+	public List<Student> getStudentsByRollNoList(String[] s_rollnoList){
+		boolean initiateListFlag = false;
+		List<Student> students = null;
+		if (s_rollnoList.length > 0) {
+			String list = "'" + s_rollnoList[0] + "'";
+			if (s_rollnoList.length > 1) {
+				for (int i = 1; i < s_rollnoList.length; i++) {
+					list += " ,'" + s_rollnoList[i] + "'";
+				}
+			}
+			String query = "select * from student where rollno in (" + list + ")";
 
+			try {
+				PreparedStatement ps = con.prepareStatement(query);
+				ResultSet rs = ps.executeQuery();
+				while (rs.next()) {
+					if (!(initiateListFlag)) {
+						students = new ArrayList<Student>();
+						initiateListFlag = true;
+					}
+					students.add(generateStudentClass(rs));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return students;
+	}
 }
