@@ -1,7 +1,7 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.sql.Date;
 
 import javax.servlet.ServletException;
@@ -15,23 +15,19 @@ import helper.ConnectionProvider;
 
 public class RegisterMainEvent extends HttpServlet {
 
-    public RegisterMainEvent() {}
+	public RegisterMainEvent() {
+	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.sendRedirect("./index.jsp");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		MainEventDao dao = new MainEventDao(ConnectionProvider.getConnection());
-		if(dao.insert(new MainEvent(request.getParameter("me_name"), Date.valueOf(request.getParameter("me_date")))))
-			out.println("success!");
-		else
-			out.println("error!");
+		if (dao.insert(new MainEvent(request.getParameter("me_name"), Date.valueOf(request.getParameter("me_date")))))
+			response.getWriter().println("1");
 	}
 
 }

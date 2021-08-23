@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.MainEventDao;
-import entity.MainEvent;
 import helper.ConnectionProvider;
 
 public class RemoveMainEvent extends HttpServlet {
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.sendRedirect("index.jsp");
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		MainEventDao dao = new MainEventDao(ConnectionProvider.getConnection());
-		if (dao.removeMEventById(Integer.parseInt(request.getParameter("me_id")))) {
+		if (dao.remove(Integer.parseInt(request.getParameter("me_id"))))
 			response.getWriter().println("1");
-		}
 	}
 
 }

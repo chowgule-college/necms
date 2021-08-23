@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 import entity.MainEvent;
 
@@ -18,11 +17,10 @@ public class MainEventDao {
 	private Connection con;
 
 	public MainEventDao(Connection con) {
-		super();
 		this.con = con;
 	}
 
-	private MainEvent generateMEClass(ResultSet rs) throws SQLException {
+	private MainEvent getObject(ResultSet rs) throws SQLException {
 		return new MainEvent(rs.getInt(1), rs.getString(2), rs.getDate(3));
 	}
 
@@ -41,7 +39,7 @@ public class MainEventDao {
 	}
 
 	// for this to function add cascade on delete on database server
-	public boolean removeMEventById(int me_id) {
+	public boolean remove(int me_id) {
 		String query = "delete from main_event where me_id = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
@@ -51,11 +49,10 @@ public class MainEventDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return false;
 	}
-	
-	public boolean updateMainEvent(int me_id, String me_name, Date me_date) {
+
+	public boolean update(int me_id, String me_name, Date me_date) {
 		String query = "update main_event set me_name = ?, me_date = ? where me_id = ? ";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
@@ -70,7 +67,7 @@ public class MainEventDao {
 		return false;
 	}
 
-	public List<MainEvent> getAllMainEvents() {
+	public List<MainEvent> fetch() {
 		List<MainEvent> me_list = null;
 		boolean initiateListFlag = false;
 		String query = "select * from main_event";
@@ -82,7 +79,7 @@ public class MainEventDao {
 					me_list = new ArrayList<MainEvent>();
 					initiateListFlag = true;
 				}
-				me_list.add(generateMEClass(rs));
+				me_list.add(getObject(rs));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,22 +87,16 @@ public class MainEventDao {
 		return me_list;
 	}
 
-	public List<MainEvent> getMainEvents(String searchCategory, String searchStr, String orderCategory,
+	public List<MainEvent> fetchWithSearchAndOrder(String searchCategory, String searchStr, String orderCategory,
 			String orderType) {
-	
-		List<MainEvent> meList = getAllMainEvents();
-
-		meList = getMainEventBySearch(searchCategory, searchStr, meList);
-
-		meList = getMainEventByOrder(orderCategory, orderType, meList);
-		
-
+		List<MainEvent> meList = fetch();
+		meList = sortBySearch(searchCategory, searchStr, meList);
+		meList = sortByOrder(orderCategory, orderType, meList);
 		return meList;
 	}
 
-	public List<MainEvent> getMainEventBySearch(String searchCategory, String searchStr, List<MainEvent> meList) {
+	public List<MainEvent> sortBySearch(String searchCategory, String searchStr, List<MainEvent> meList) {
 		List<MainEvent> sortedMeList = new ArrayList<MainEvent>();
-
 		if (searchCategory.equals("NAME")) {
 			for (int i = 0; i < meList.size(); i++) {
 				if (meList.get(i).getMe_name().toLowerCase().contains(searchStr.toLowerCase()))
@@ -124,19 +115,18 @@ public class MainEventDao {
 					sortedMeList.add(meList.get(i));
 			}
 		}
-
 		return sortedMeList;
 	}
 
-	public List<MainEvent> getMainEventByOrder(String orderCategory, String orderType, List<MainEvent> meList) {
+	public List<MainEvent> sortByOrder(String orderCategory, String orderType, List<MainEvent> meList) {
 		List<MainEvent> orderedMeList = meList;
-
 		if (orderType.equals("ASCENDING")) {
 			if (orderCategory.equals("NAME")) {
 				Collections.sort(orderedMeList, new Comparator<MainEvent>() {
 					public int compare(MainEvent o1, MainEvent o2) {
 						return o1.getMe_name().compareToIgnoreCase(o2.getMe_name());
-					}});
+					}
+				});
 			}
 			if (orderCategory.equals("DATE")) {
 				Collections.sort(orderedMeList, new Comparator<MainEvent>() {
@@ -144,32 +134,28 @@ public class MainEventDao {
 						return o1.getMe_date().toString().compareTo(o2.getMe_date().toString());
 					}
 				});
-
 			}
 			if (orderCategory.equals("ID")) {
 				Collections.sort(orderedMeList, new Comparator<MainEvent>() {
 					public int compare(MainEvent o1, MainEvent o2) {
 						if (o1.getMe_id() == o2.getMe_id()) {
-				            return 0;
-				        }
-				        else if (o1.getMe_id() < o2.getMe_id()) {
-				            return -1;
-				        }
-				        else {
-				            return 1;
-				        }
-
+							return 0;
+						} else if (o1.getMe_id() < o2.getMe_id()) {
+							return -1;
+						} else {
+							return 1;
+						}
 					}
 				});
 			}
 		}
-		
 		if (orderType.equals("DESCENDING")) {
 			if (orderCategory.equals("NAME")) {
 				Collections.sort(orderedMeList, new Comparator<MainEvent>() {
 					public int compare(MainEvent o1, MainEvent o2) {
 						return -o1.getMe_name().compareToIgnoreCase(o2.getMe_name());
-					}});
+					}
+				});
 			}
 			if (orderCategory.equals("DATE")) {
 				Collections.sort(orderedMeList, new Comparator<MainEvent>() {
@@ -177,26 +163,21 @@ public class MainEventDao {
 						return -o1.getMe_date().toString().compareTo(o2.getMe_date().toString());
 					}
 				});
-
 			}
 			if (orderCategory.equals("ID")) {
 				Collections.sort(orderedMeList, new Comparator<MainEvent>() {
 					public int compare(MainEvent o1, MainEvent o2) {
 						if (o1.getMe_id() == o2.getMe_id()) {
-				            return 0;
-				        }
-				        else if (o1.getMe_id() < o2.getMe_id()) {
-				            return 1;
-				        }
-				        else {
-				            return -1;
-				        }
+							return 0;
+						} else if (o1.getMe_id() < o2.getMe_id()) {
+							return 1;
+						} else {
+							return -1;
+						}
 					}
 				});
 			}
 		}
-		
-
 		return orderedMeList;
 	}
 

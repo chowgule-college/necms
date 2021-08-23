@@ -2,12 +2,6 @@ package entity;
 
 public class Participant {
 
-	/* These are names of column and table from the database */
-	public static final String P_TNAME = "participant";
-	public static final String P_MEID = MainEvent.ME_ID;
-	public static final String P_SEID = SubEvent.SE_ID;
-	public static final String P_ROLLNO = "p_rollno";
-	
 	private String p_rollno;
 	private int se_id;
 	private int me_id;

@@ -15,7 +15,7 @@ String orderType = request.getParameter("orderType");
 
 
 MainEventDao dao = new MainEventDao(ConnectionProvider.getConnection());
-List<MainEvent> meList = dao.getMainEvents(searchCategory, searchStr, orderCategory, orderType);
+List<MainEvent> meList = dao.fetchWithSearchAndOrder(searchCategory, searchStr, orderCategory, orderType);
 MainEvent me;
 int count = 0;
 %>

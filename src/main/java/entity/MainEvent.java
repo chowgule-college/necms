@@ -3,13 +3,6 @@ package entity;
 import java.sql.Date;
 
 public class MainEvent {
-
-	/* These are names of column and table from the database */
-	public static final String ME_TNAME = "main_event";
-	public static final String ME_ID = "me_id";
-	public static final String ME_NAME = "me_name";
-	public static final String ME_DATE = "me_date";
-
 	private int me_id;
 	private String me_name;
 	private Date me_date;
@@ -53,12 +46,5 @@ public class MainEvent {
 	public void setMe_date(Date me_date) {
 		this.me_date = me_date;
 	}
-
-	@Override
-	public String toString() {
-		return "MainEvent [me_id=" + me_id + ", me_name=" + me_name + ", me_date=" + me_date + "]";
-	}
-
-	
 
 }

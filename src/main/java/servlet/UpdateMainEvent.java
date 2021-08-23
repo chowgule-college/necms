@@ -12,18 +12,19 @@ import dao.MainEventDao;
 import helper.ConnectionProvider;
 
 public class UpdateMainEvent extends HttpServlet {
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		response.sendRedirect("index.jsp");
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		MainEventDao dao = new MainEventDao(ConnectionProvider.getConnection());
-		
-		if (dao.updateMainEvent(Integer.parseInt(request.getParameter("me_id")), request.getParameter("me_name"), Date.valueOf(request.getParameter("me_date")))) {
+		if (dao.update(Integer.parseInt(request.getParameter("me_id")), request.getParameter("me_name"),
+				Date.valueOf(request.getParameter("me_date"))))
 			response.getWriter().println("1");
-		}
 	}
 
 }

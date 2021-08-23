@@ -20,20 +20,21 @@ int count = 0;
 	<div class="d-flex justify-content-end align-items-center mt-3">
 		<div class="filter">
 			<span>Filter by</span> <select class="custom-select custom-select-sm"
-				id="filter-field" onchange="loadTable()">
+				id="filter-field" onchange="loadMainEventTable()">
 				<option selected value="NAME">Name</option>
-				<option value="DATE">Year</option>
+				<option value="DATE">Date</option>
 				<option value="ID">ID</option>
 			</select> <input class="form-group" type="text" placeholder="Search"
-				id="filter-query" onkeyup="loadTable()">
+				id="filter-query" onkeyup="loadMainEventTable()">
 		</div>
 		<div class="sort ms-4">
 			<span>Sort by</span> <select class="custom-select custom-select-sm"
-				id="sort-field" onchange="loadTable()">
+				id="sort-field" onchange="loadMainEventTable()">
 				<option selected value="NAME">Name</option>
-				<option value="DATE">Year</option>
+				<option value="DATE">Date</option>
 				<option value="ID">ID</option>
-			</select> <select class="custom-select custom-select-sm" id="sort-direction" onchange="loadTable()">
+			</select> <select class="custom-select custom-select-sm" id="sort-direction"
+				onchange="loadMainEventTable()">
 				<option selected value="ASCENDING">Ascending</option>
 				<option value="DESCENDING">Descending</option>
 			</select>
@@ -41,7 +42,9 @@ int count = 0;
 
 		<button type="button" class="btn btn-secondary ms-4"
 			data-bs-toggle="modal" data-bs-target="#addNewEventModal">+</button>
-
+			
+			
+<!-- Modal to Add New Event  -->
 		<div class="modal" tabindex="-1" role="dialog" id="addNewEventModal">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
@@ -66,72 +69,80 @@ int count = 0;
 								aria-label="Sizing example input"
 								aria-describedby="inputGroup-sizing-default" id="me_date">
 						</div>
+						
+						<div id="new-error"></div>
 					</div>
+
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" onclick="addNewMainEvent()">Save
-							event</button>
+						<button type="button" class="btn btn-secondary"
+							onclick="addNewMainEvent()">Save event</button>
 					</div>
 				</div>
 			</div>
 		</div>
 
-            <!-- Modal to Edit Event  -->
+		<!-- Modal to Edit Event  -->
 
-            <div class="modal" tabindex="-1" role="dialog" id="editRow">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Edit entry</h5>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"
-                                onclick="$('#editRow').modal('toggle')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
-                                <input type="text" class="form-control" aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-default" id="edit-me-name">
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-default">Date of
-                                    commencement</span>
-                                <input type="date" class="form-control" aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-default" id="edit-me-date">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" id="update-save">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+		<div class="modal" tabindex="-1" role="dialog" id="editRow">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Edit entry</h5>
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal" aria-label="Close"
+							onclick="$('#editRow').modal('toggle')">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="input-group mb-3">
+							<span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+							<input type="text" class="form-control"
+								aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default" id="edit-me-name">
+						</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text" id="inputGroup-sizing-default">Date
+								of commencement</span> <input type="date" class="form-control"
+								aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default" id="edit-me-date">
+						</div>
+						
+						<div id="update-error"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" id="update-save">Save</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-<!-- Modal to Delete Event  -->
+		<!-- Modal to Delete Event  -->
 
-            <div class="modal" tabindex="-1" role="dialog" id="deleteRow">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Delete entry</h5>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close"
-                                onclick="$('#deleteRow').modal('toggle')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="input-group mb-3">
-                                <span id="inputGroup-sizing-default">Are you sure?</span>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary"
-                                onclick="$('#deleteRow').modal('toggle')">No</button>
-                            <button type="button" class="btn btn-secondary" id="remove-item">Yes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+		<div class="modal" tabindex="-1" role="dialog" id="deleteRow">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Delete entry</h5>
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal" aria-label="Close"
+							onclick="$('#deleteRow').modal('toggle')">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="input-group mb-3">
+							<span id="inputGroup-sizing-default">Are you sure?</span>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							onclick="$('#deleteRow').modal('toggle')">No</button>
+						<button type="button" class="btn btn-secondary" id="remove-item">Yes</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</div>
 	<table class="table mt-5">
