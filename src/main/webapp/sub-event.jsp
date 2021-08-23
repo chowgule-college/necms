@@ -113,16 +113,16 @@
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Sub-event name</span>
                                 <input type="text" class="form-control" aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-default">
+                                    aria-describedby="inputGroup-sizing-default" id="edit-se-name">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Number of hours</span>
                                 <input type="number" min=0 class="form-control" aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-default" placeholder="0">
+                                    aria-describedby="inputGroup-sizing-default" placeholder="0" id="edit-se-hours">
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary">Save sub-event</button>
+                            <button type="button" class="btn btn-secondary" id="update-save">Save sub-event</button>
                         </div>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary"
                                 onclick="$('#deleteRow').modal('toggle')">No</button>
-                            <button type="button" class="btn btn-secondary">Yes</button>
+                            <button type="button" class="btn btn-secondary" id="remove-item">Yes</button>
                         </div>
                     </div>
                 </div>

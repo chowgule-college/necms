@@ -26,6 +26,7 @@ int count = 0;
 <c:forEach var="i" begin="1" end="<%=studentList.size()%>">
 	<%
 	student = studentList.get(count);
+	count++;
 	%>
 
 	<tr>
@@ -35,11 +36,7 @@ int count = 0;
 		<td><%=student.getS_year().split("-")[0]%></td>
 		<td><%=student.getS_course()%></td>
 		 <td>
-                        <i class="fas fa-pen-square" data-bs-toggle="modal" data-bs-target="#editRow"></i>
-                        <i class="fas fa-minus-square" data-bs-toggle="modal" data-bs-target="#deleteRow"></i>
+                        <i class="fas fa-minus-square" onclick="removeParticipant('<%=me_id%>', '<%=se_id%>', '<%=student.getS_rollno()%>')"></i>
                     </td>
 	</tr>
-	<%
-	count++;
-	%>
 </c:forEach>

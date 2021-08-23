@@ -23,12 +23,6 @@
 		<servlet-class>servlet.RegisterParticipant</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>RemoveParticipantByRollNo</servlet-name>
-		<display-name>RemoveParticipantByRollNo</display-name>
-		<description></description>
-		<servlet-class>servlet.RemoveParticipantByRollNo</servlet-class>
-	</servlet>
-	<servlet>
 		<servlet-name>CheckStudent</servlet-name>
 		<display-name>CheckStudent</display-name>
 		<description></description>
@@ -39,6 +33,36 @@
 		<display-name>RegisterBulkParticipants</display-name>
 		<description></description>
 		<servlet-class>servlet.RegisterBulkParticipants</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RemoveMainEvent</servlet-name>
+		<display-name>RemoveMainEvent</display-name>
+		<description></description>
+		<servlet-class>servlet.RemoveMainEvent</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RemoveSubEvent</servlet-name>
+		<display-name>RemoveSubEvent</display-name>
+		<description></description>
+		<servlet-class>servlet.RemoveSubEvent</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RemoveParticipant</servlet-name>
+		<display-name>RemoveParticipant</display-name>
+		<description></description>
+		<servlet-class>servlet.RemoveParticipant</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UpdateMainEvent</servlet-name>
+		<display-name>UpdateMainEvent</display-name>
+		<description></description>
+		<servlet-class>servlet.UpdateMainEvent</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UpdateSubEvent</servlet-name>
+		<display-name>UpdateSubEvent</display-name>
+		<description></description>
+		<servlet-class>servlet.UpdateSubEvent</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>RegisterMainEvent</servlet-name>
@@ -52,11 +76,6 @@
 		<servlet-name>RegisterParticipant</servlet-name>
 		<url-pattern>/RegisterParticipant</url-pattern>
 	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>RemoveParticipantByRollNo</servlet-name>
-		<url-pattern>/RemoveParticipantByRollNo</url-pattern>
-	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>CheckStudent</servlet-name>
 		<url-pattern>/CheckStudent</url-pattern>
@@ -64,5 +83,25 @@
 	<servlet-mapping>
 		<servlet-name>RegisterBulkParticipants</servlet-name>
 		<url-pattern>/RegisterBulkParticipants</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RemoveMainEvent</servlet-name>
+		<url-pattern>/RemoveMainEvent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RemoveSubEvent</servlet-name>
+		<url-pattern>/RemoveSubEvent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RemoveParticipant</servlet-name>
+		<url-pattern>/RemoveParticipant</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateMainEvent</servlet-name>
+		<url-pattern>/UpdateMainEvent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateSubEvent</servlet-name>
+		<url-pattern>/UpdateSubEvent</url-pattern>
 	</servlet-mapping>
 </web-app>

@@ -163,7 +163,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary"
                                 onclick="$('#deleteRow').modal('toggle')">No</button>
-                            <button type="button" class="btn btn-secondary">Yes</button>
+                            <button type="button" class="btn btn-secondary" id="remove-item">Yes</button>
                         </div>
                     </div>
                 </div>

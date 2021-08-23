@@ -239,6 +239,119 @@ i.fas {
 				}
 			});
 		}
+		
+		function removeMainEvent(me_id){
+			$('#deleteRow').modal('show');
+			const yesButton = document.getElementById("remove-item");
+			yesButton.addEventListener("click", () => {
+				$.ajax({
+					type : "POST",
+					url : "RemoveMainEvent?me_id=" + me_id,
+					processData : false,
+					contentType : false,
+					success : function(data) {
+						if(data == 1){
+							$('#deleteRow').modal('hide');
+							loadTable();
+						}else{
+							alert("something went wrong!");
+						}
+					}
+				});
+			});
+		}
+		
+		function removeSubEvent(se_id, me_id){
+			$('#deleteRow').modal('show');
+			const yesButton = document.getElementById("remove-item");
+			yesButton.addEventListener("click", () => {
+				$.ajax({
+					type : "POST",
+					url : "RemoveSubEvent?me_id=" + me_id + "&&se_id=" + se_id,
+					processData : false,
+					contentType : false,
+					success : function(data) {
+						if(data == 1){
+							$('#deleteRow').modal('hide');
+							loadSubEventTable(me_id);
+						}else{
+							alert("something went wrong!");
+						}
+					}
+				});
+			});
+		}
+		
+		function removeParticipant(me_id, se_id, p_rollno){
+			$('#deleteRow').modal('show');
+			const yesButton = document.getElementById("remove-item");
+			yesButton.addEventListener("click", () => {
+				$.ajax({
+					type : "POST",
+					url : "RemoveParticipant?me_id=" + me_id + "&&se_id=" + se_id + "&&p_rollno=" + p_rollno,
+					processData : false,
+					contentType : false,
+					success : function(data) {
+						if(data == 1){
+							$('#deleteRow').modal('hide');
+							loadParticipantTable(me_id, se_id)
+						}else{
+							alert("something went wrong!");
+						}
+					}
+				});
+			});
+		}
+		
+		function updateMainEvent(me_id, me_name, me_date){
+			var editMeName = document.getElementById("edit-me-name");
+			var editMeDate = document.getElementById("edit-me-date");
+			editMeName.value = me_name;
+			editMeDate.value = me_date;
+			$('#editRow').modal('show');
+			const updateSave = document.getElementById("update-save");
+			updateSave.addEventListener("click", () => {
+				$.ajax({
+					type : "POST",
+					url : "UpdateMainEvent?me_id=" + me_id + "&&me_name=" + editMeName.value + "&&me_date=" + editMeDate.value,
+					processData : false,
+					contentType : false,
+					success : function(data) {
+						if(data == 1){
+							$('#editRow').modal('hide');
+							loadTable();
+						}else{
+							alert("something went wrong!");
+						}
+					}
+				});
+			});
+		}
+		
+		function updateSubEvent(se_id, me_id, se_name, se_hours){
+			var editSeName = document.getElementById("edit-se-name");
+			var editSeHours = document.getElementById("edit-se-hours");
+			editSeName.value = se_name;
+			editSeHours.value = se_hours;
+			$('#editRow').modal('show');
+			const updateSave = document.getElementById("update-save");
+			updateSave.addEventListener("click", () => {
+				$.ajax({
+					type : "POST",
+					url : "UpdateSubEvent?me_id=" + me_id + "&&se_id=" + se_id + "&&se_name=" + editSeName.value + "&&se_hours=" + editSeHours.value,
+					processData : false,
+					contentType : false,
+					success : function(data) {
+						if(data == 1){
+							$('#editRow').modal('hide');
+							loadSubEventTable(me_id);
+						}else{
+							alert("something went wrong!");
+						}
+					}
+				});
+			});
+		}
 
 
 		loadMainEvent()

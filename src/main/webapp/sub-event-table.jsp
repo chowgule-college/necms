@@ -21,6 +21,7 @@ int count = 0;
 <c:forEach var="i" begin="1" end="<%=seList.size()%>">
 				<%
 				se = seList.get(count);
+				count++;
 				%>
 
 				<tr >
@@ -29,11 +30,8 @@ int count = 0;
                     <td><%=se.getSe_hours() %></td>
                     <td><%=se.getSe_id() %></td>
                     <td>
-                        <i class="fas fa-pen-square" data-bs-toggle="modal" data-bs-target="#editRow"></i>
-                        <i class="fas fa-minus-square" data-bs-toggle="modal" data-bs-target="#deleteRow"></i>
+                        <i class="fas fa-pen-square" onclick="updateSubEvent('<%=se.getSe_id()%>', '<%=se.getMe_id()%>', '<%=se.getSe_name() %>', '<%=se.getSe_hours() %>')"></i>
+                        <i class="fas fa-minus-square" onclick="removeSubEvent('<%=se.getSe_id()%>', '<%=se.getMe_id()%>')"></i>
                     </td>
                 </tr>
-				<%
-				count++;
-				%>
 			</c:forEach>

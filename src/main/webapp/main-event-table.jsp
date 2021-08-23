@@ -25,6 +25,7 @@ int count = 0;
 				me = meList.get(count);
 				SimpleDateFormat df = new SimpleDateFormat("yyyy");
 				String year = df.format(me.getMe_date());
+				count++;
 				%>
 
 				<tr >
@@ -33,11 +34,8 @@ int count = 0;
 					<td><%=me.getMe_date().toString()%></td>
 					<td><%=me.getMe_id()%></td>
 					<td>
-                        <i class="fas fa-pen-square" data-bs-toggle="modal" data-bs-target="#editRow"></i>
-                        <i class="fas fa-minus-square" data-bs-toggle="modal" data-bs-target="#deleteRow"></i>
+                        <i class="fas fa-pen-square" onclick="updateMainEvent('<%=me.getMe_id()%>', '<%=me.getMe_name()%>', '<%=me.getMe_date().toString()%>')"></i>
+                        <i class="fas fa-minus-square" onclick="removeMainEvent('<%=me.getMe_id()%>')"></i>
                     </td>
 				</tr>
-				<%
-				count++;
-				%>
 			</c:forEach>

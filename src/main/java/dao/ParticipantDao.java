@@ -35,11 +35,13 @@ public class ParticipantDao {
 		return false;
 	}
 
-	public boolean removeParticipantByRollNo(String p_rollno) {
-		String query = "delete from participant where p_rollno = ?";
+	public boolean removeParticipant(int me_id, int se_id, String p_rollno) {
+		String query = "delete from participant where me_id = ? and se_id = ? and p_rollno = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setString(1, p_rollno);
+			ps.setInt(1, me_id);
+			ps.setInt(2, se_id);
+			ps.setString(3, p_rollno);
 			ps.execute();
 
 			return true;

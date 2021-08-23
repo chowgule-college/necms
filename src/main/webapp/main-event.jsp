@@ -91,17 +91,17 @@ int count = 0;
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
                                 <input type="text" class="form-control" aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-default">
+                                    aria-describedby="inputGroup-sizing-default" id="edit-me-name">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="inputGroup-sizing-default">Date of
                                     commencement</span>
                                 <input type="date" class="form-control" aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-default">
+                                    aria-describedby="inputGroup-sizing-default" id="edit-me-date">
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary">Save</button>
+                            <button type="button" class="btn btn-secondary" id="update-save">Save</button>
                         </div>
                     </div>
                 </div>
@@ -127,7 +127,7 @@ int count = 0;
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary"
                                 onclick="$('#deleteRow').modal('toggle')">No</button>
-                            <button type="button" class="btn btn-secondary">Yes</button>
+                            <button type="button" class="btn btn-secondary" id="remove-item">Yes</button>
                         </div>
                     </div>
                 </div>

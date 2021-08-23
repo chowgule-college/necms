@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,7 +42,7 @@ public class MainEventDao {
 
 	// for this to function add cascade on delete on database server
 	public boolean removeMEventById(int me_id) {
-		String query = "delete from main_even where me_id = ?";
+		String query = "delete from main_event where me_id = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setInt(1, me_id);
@@ -51,6 +52,21 @@ public class MainEventDao {
 			e.printStackTrace();
 		}
 
+		return false;
+	}
+	
+	public boolean updateMainEvent(int me_id, String me_name, Date me_date) {
+		String query = "update main_event set me_name = ?, me_date = ? where me_id = ? ";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, me_name);
+			ps.setDate(2, me_date);
+			ps.setInt(3, me_id);
+			ps.execute();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
