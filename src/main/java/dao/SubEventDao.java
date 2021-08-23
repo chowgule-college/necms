@@ -7,10 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
-
-import entity.MainEvent;
 import entity.SubEvent;
 
 public class SubEventDao {
@@ -18,11 +15,10 @@ public class SubEventDao {
 	private Connection con;
 
 	public SubEventDao(Connection con) {
-		super();
 		this.con = con;
 	}
 
-	private SubEvent generateSEClass(ResultSet rs) throws SQLException {
+	private SubEvent getObject(ResultSet rs) throws SQLException {
 		return new SubEvent(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
 	}
 
@@ -42,7 +38,7 @@ public class SubEventDao {
 	}
 
 	// for this to function add cascade on delete on database server
-	public boolean removeSEventById(int se_id, int me_id) {
+	public boolean remove(int se_id, int me_id) {
 		String query = "delete from sub_event where se_id = ? and me_id = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
@@ -53,11 +49,10 @@ public class SubEventDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return false;
 	}
 	
-	public boolean updateSubEvent(int me_id, int se_id, String se_name, int se_hours) {
+	public boolean update(int me_id, int se_id, String se_name, int se_hours) {
 		String query = "update sub_event set se_name = ?, se_hours = ? where me_id = ? and se_id = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
@@ -71,11 +66,10 @@ public class SubEventDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return false;
 	}
 
-	public List<SubEvent> getAllSubEventByMainEvent(int me_id) {
+	public List<SubEvent> fetch(int me_id) {
 		List<SubEvent> se_list = null;
 		boolean initiateListFlag = false;
 		String query = "select * from sub_event where me_id = ?";
@@ -88,7 +82,7 @@ public class SubEventDao {
 					se_list = new ArrayList<SubEvent>();
 					initiateListFlag = true;
 				}
-				se_list.add(generateSEClass(rs));
+				se_list.add(getObject(rs));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -96,30 +90,23 @@ public class SubEventDao {
 		return se_list;
 	}
 
-	public List<SubEvent> getSubEvents(int me_id, String searchCategory, String searchStr, String orderCategory,
+	public List<SubEvent> fetchWithSearchAndOrder(int me_id, String searchCategory, String searchStr, String orderCategory,
 			String orderType) {
-		List<SubEvent> seList = getAllSubEventByMainEvent(me_id);
-
-		seList = getSubEventBySearch(searchCategory, searchStr, seList);
-
-		seList = getSubEventByOrder(orderCategory, orderType, seList);
-
+		List<SubEvent> seList = fetch(me_id);
+		seList = sortBySearch(searchCategory, searchStr, seList);
+		seList = sortByOrder(orderCategory, orderType, seList);
 		return seList;
 	}
 
-	public List<SubEvent> getSubEventBySearch(String searchCategory, String searchStr, List<SubEvent> seList) {
+	public List<SubEvent> sortBySearch(String searchCategory, String searchStr, List<SubEvent> seList) {
 		List<SubEvent> sortedSeList = new ArrayList<SubEvent>();
-
 		if (searchCategory.equals("NAME")) {
-
 			for (int i = 0; i < seList.size(); i++) {
-
 				if (seList.get(i).getSe_name().toLowerCase().contains(searchStr.toLowerCase()))
 					sortedSeList.add(seList.get(i));
 			}
 		}
 		if (searchCategory.equals("HOURS")) {
-
 			for (int i = 0; i < seList.size(); i++) {
 				if (String.valueOf(seList.get(i).getSe_hours()).contains(searchStr))
 					sortedSeList.add(seList.get(i));
@@ -131,17 +118,13 @@ public class SubEventDao {
 					sortedSeList.add(seList.get(i));
 			}
 		}
-
 		return sortedSeList;
 	}
 
-	public List<SubEvent> getSubEventByOrder(String orderCategory, String orderType, List<SubEvent> meList) {
+	public List<SubEvent> sortByOrder(String orderCategory, String orderType, List<SubEvent> meList) {
 		List<SubEvent> orderedMeList = meList;
-
 		if (orderType.equals("ASCENDING")) {
-
 			if (orderCategory.equals("NAME")) {
-
 				Collections.sort(orderedMeList, new Comparator<SubEvent>() {
 					public int compare(SubEvent o1, SubEvent o2) {
 						return o1.getSe_name().compareTo(o2.getSe_name());
@@ -172,12 +155,10 @@ public class SubEventDao {
 						} else {
 							return 1;
 						}
-
 					}
 				});
 			}
 		}
-
 		if (orderType.equals("DESCENDING")) {
 			if (orderCategory.equals("NAME")) {
 				Collections.sort(orderedMeList, new Comparator<SubEvent>() {
@@ -198,7 +179,6 @@ public class SubEventDao {
 						}
 					}
 				});
-
 			}
 			if (orderCategory.equals("ID")) {
 				Collections.sort(orderedMeList, new Comparator<SubEvent>() {
@@ -210,12 +190,10 @@ public class SubEventDao {
 						} else {
 							return -1;
 						}
-
 					}
 				});
 			}
 		}
-
 		return orderedMeList;
 	}
 }

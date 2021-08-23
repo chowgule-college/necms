@@ -13,7 +13,7 @@ String orderType = request.getParameter("orderType");
 int me_id = Integer.parseInt(request.getParameter("me_id"));
 
 SubEventDao dao = new SubEventDao(ConnectionProvider.getConnection());
-List<SubEvent> seList = dao.getSubEvents(me_id, searchCategory, searchStr, orderCategory, orderType);
+List<SubEvent> seList = dao.fetchWithSearchAndOrder(me_id, searchCategory, searchStr, orderCategory, orderType);
 SubEvent se;
 int count = 0;
 %>

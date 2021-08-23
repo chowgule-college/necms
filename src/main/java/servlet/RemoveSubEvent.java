@@ -13,16 +13,18 @@ import helper.ConnectionProvider;
  * Servlet implementation class RemoveSubEvent
  */
 public class RemoveSubEvent extends HttpServlet {
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.sendRedirect("index.jsp");
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		SubEventDao dao = new SubEventDao(ConnectionProvider.getConnection());
-		if (dao.removeSEventById(Integer.parseInt(request.getParameter("se_id")), Integer.parseInt(request.getParameter("me_id")))) {
+		if (dao.remove(Integer.parseInt(request.getParameter("se_id")),
+				Integer.parseInt(request.getParameter("me_id"))))
 			response.getWriter().println("1");
-		}
 	}
 
 }

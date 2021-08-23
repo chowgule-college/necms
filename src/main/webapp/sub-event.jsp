@@ -3,7 +3,6 @@
     
     <%
     	String me_name = request.getParameter("me_name");
-    	String me_year = request.getParameter("me_year");
     	String me_id = request.getParameter("me_id");
     
     %>
@@ -18,7 +17,7 @@
         <nav aria-label="breadcrumb" class="mt-4">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item link-primary cursor-pointer" onclick="loadMainEvent()">All Events</li>
-                <li class="breadcrumb-item active" aria-current="page" id="me_title"><%=me_name %> <%=me_year %></li>
+                <li class="breadcrumb-item active" aria-current="page" id="me_title"><%=me_name %></li>
             </ol>
         </nav>
 
@@ -33,7 +32,6 @@
 
         <h4 class="mt-4">
             <%= me_name%>
-            <span class="badge bg-secondary ms-2"><%=me_year %></span>
         </h4>
 
         <div class="d-flex justify-content-end align-items-center mt-3">
@@ -89,6 +87,7 @@
                                 <input type="number" min=0 class="form-control" aria-label="Sizing example input"
                                     aria-describedby="inputGroup-sizing-default" placeholder="0" id="se_hours">
                             </div>
+                            <div id="new-error"></div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" onclick="addNewSubEvent('<%= me_id %>')">Save sub-event</button>
@@ -120,6 +119,7 @@
                                 <input type="number" min=0 class="form-control" aria-label="Sizing example input"
                                     aria-describedby="inputGroup-sizing-default" placeholder="0" id="edit-se-hours">
                             </div>
+                            <div id="update-error"></div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" id="update-save">Save sub-event</button>

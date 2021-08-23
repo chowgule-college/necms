@@ -10,17 +10,19 @@ import dao.SubEventDao;
 import helper.ConnectionProvider;
 
 public class UpdateSubEvent extends HttpServlet {
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		response.sendRedirect("index.jsp");
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		SubEventDao dao = new SubEventDao(ConnectionProvider.getConnection());
-		if (dao.updateSubEvent(Integer.parseInt(request.getParameter("me_id")), Integer.parseInt(request.getParameter("se_id")), request.getParameter("se_name"), Integer.parseInt(request.getParameter("se_hours")))) {
+		if (dao.update(Integer.parseInt(request.getParameter("me_id")), Integer.parseInt(request.getParameter("se_id")),
+				request.getParameter("se_name"), Integer.parseInt(request.getParameter("se_hours"))))
 			response.getWriter().println("1");
-		}
 	}
 
 }

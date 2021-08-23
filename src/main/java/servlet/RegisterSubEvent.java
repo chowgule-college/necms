@@ -14,7 +14,7 @@ public class RegisterSubEvent extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("./index.jsp");
+		response.sendRedirect("index.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -24,9 +24,7 @@ public class RegisterSubEvent extends HttpServlet {
 		SubEventDao dao = new SubEventDao(ConnectionProvider.getConnection());
 		if (dao.insert(new SubEvent(request.getParameter("se_name"), Integer.parseInt(request.getParameter("se_hours")),
 				Integer.parseInt(request.getParameter("me_id")))))
-			out.println("success!");
-		else
-			out.println("error!");
+			out.println("1");
 	}
 
 }

@@ -23,14 +23,12 @@ int count = 0;
 <c:forEach var="i" begin="1" end="<%=meList.size()%>">
 				<%
 				me = meList.get(count);
-				SimpleDateFormat df = new SimpleDateFormat("yyyy");
-				String year = df.format(me.getMe_date());
 				count++;
 				%>
 
 				<tr >
 					<th scope="row"><%=count%></th>
-					<td colspan="2" onclick="loadSubEvent('<%=me.getMe_id()%>','<%=me.getMe_name()%>', '<%= year%>')"><%=me.getMe_name()%></td>
+					<td colspan="2" onclick="loadSubEvent('<%=me.getMe_id()%>','<%=me.getMe_name()%>')"><%=me.getMe_name()%></td>
 					<td><%=me.getMe_date().toString()%></td>
 					<td><%=me.getMe_id()%></td>
 					<td>
