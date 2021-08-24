@@ -169,7 +169,7 @@
                 
             </tbody>
         </table>
-        <div class="d-flex justify-content-center mt-5">
+        <!-- <div class="d-flex justify-content-center mt-5">
             <button type="button" class="btn btn-secondary">More</button>
-        </div>
+        </div> -->
     </div>

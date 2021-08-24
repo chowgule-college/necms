@@ -12,15 +12,12 @@ String searchCategory = request.getParameter("searchCategory");
 String searchStr = request.getParameter("searchStr");
 String orderCategory = request.getParameter("orderCategory");
 String orderType = request.getParameter("orderType");
-
-
 MainEventDao dao = new MainEventDao(ConnectionProvider.getConnection());
 List<MainEvent> meList = dao.fetchWithSearchAndOrder(searchCategory, searchStr, orderCategory, orderType);
 MainEvent me;
 int count = 0;
 if(meList != null){
 %>
-
 <c:forEach var="i" begin="1" end="<%=meList.size()%>">
 				<%
 				me = meList.get(count);
