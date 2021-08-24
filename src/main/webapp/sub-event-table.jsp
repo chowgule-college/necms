@@ -27,7 +27,7 @@ if(seList != null){
 
 				<tr >
                     <th scope="row"><%=count %></th>
-                    <td colspan="2" onclick="loadParticipant('<%= me_id%>', '<%= se.getSe_id()%>', '<%=se.getSe_name() %>')"><%=se.getSe_name() %></td>
+                    <td class="pointer" colspan="2" onclick="loadParticipant('<%= me_id%>', '<%= se.getSe_id()%>', '<%=se.getSe_name() %>')"><%=se.getSe_name() %></td>
                     <td><%=se.getSe_hours() %></td>
                     <td><%=se.getSe_id() %></td>
                     <td>

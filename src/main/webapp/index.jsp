@@ -19,6 +19,9 @@ i.fas {
 	cursor: pointer;
 	margin-left: 10px;
 }
+.pointer {
+  cursor: pointer;
+}
 </style>
 </head>
 

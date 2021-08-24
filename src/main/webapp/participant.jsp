@@ -17,9 +17,9 @@
 
 	<nav aria-label="breadcrumb" class="mt-4">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item link-primary cursor-pointer"
+			<li class="breadcrumb-item link-primary pointer"
 				onclick="loadMainEvent()">All Events</li>
-			<li class="breadcrumb-item link-primary cursor-pointer" onclick="loadSubEvent('<%=me_id%>', '<%= me_title%>')"><%=me_title%></li>
+			<li class="breadcrumb-item link-primary pointer" onclick="loadSubEvent('<%=me_id%>', '<%= me_title%>')"><%=me_title%></li>
 			<li class="breadcrumb-item active" aria-current="page"><%=se_name%></li>
 		</ol>
 	</nav>

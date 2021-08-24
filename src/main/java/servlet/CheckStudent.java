@@ -14,9 +14,6 @@ import entity.Participant;
 import entity.Student;
 import helper.ConnectionProvider;
 
-/**
- * Servlet implementation class CheckStudent
- */
 public class CheckStudent extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -29,15 +26,13 @@ public class CheckStudent extends HttpServlet {
 		int se_id = Integer.parseInt(request.getParameter("se_id"));
 		boolean exists = false;
 		ParticipantDao pDao = new ParticipantDao(ConnectionProvider.getConnection());
-		try {
 		List<Participant> pList = pDao.fetch(se_id, me_id);
-		for (Participant p : pList) {
-			if (p.getP_rollno().equalsIgnoreCase(request.getParameter("s_rollno"))) {
-				exists = true;
+		if (pList != null) {
+			for (Participant p : pList) {
+				if (p.getP_rollno().equalsIgnoreCase(request.getParameter("s_rollno"))) {
+					exists = true;
+				}
 			}
-		}
-		}catch(Exception e) {
-			e.printStackTrace();
 		}
 		if (exists) {
 			response.getWriter().println("1");
