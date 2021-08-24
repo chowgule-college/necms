@@ -30,7 +30,7 @@ public class CheckStudent extends HttpServlet {
 		boolean exists = false;
 		ParticipantDao pDao = new ParticipantDao(ConnectionProvider.getConnection());
 		try {
-		List<Participant> pList = pDao.getAllParticipantBySubAndMainEvent(se_id, me_id);
+		List<Participant> pList = pDao.fetch(se_id, me_id);
 		for (Participant p : pList) {
 			if (p.getP_rollno().equalsIgnoreCase(request.getParameter("s_rollno"))) {
 				exists = true;
@@ -43,7 +43,7 @@ public class CheckStudent extends HttpServlet {
 			response.getWriter().println("1");
 		} else {
 			StudentDao dao = new StudentDao(ConnectionProvider.getConnection());
-			Student student = dao.getStudentByRollNo(request.getParameter("s_rollno"));
+			Student student = dao.fetchByRollNo(request.getParameter("s_rollno"));
 			response.setContentType("text/html");
 			if (student != null) {
 				response.getWriter().println(student.getS_name());

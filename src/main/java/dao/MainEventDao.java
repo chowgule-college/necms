@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-
 import entity.MainEvent;
 
 public class MainEventDao {
@@ -90,8 +89,10 @@ public class MainEventDao {
 	public List<MainEvent> fetchWithSearchAndOrder(String searchCategory, String searchStr, String orderCategory,
 			String orderType) {
 		List<MainEvent> meList = fetch();
-		meList = sortBySearch(searchCategory, searchStr, meList);
-		meList = sortByOrder(orderCategory, orderType, meList);
+		if (meList != null) {
+			meList = sortBySearch(searchCategory, searchStr, meList);
+			meList = sortByOrder(orderCategory, orderType, meList);
+		}
 		return meList;
 	}
 

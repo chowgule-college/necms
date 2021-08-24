@@ -51,7 +51,7 @@ public class SubEventDao {
 		}
 		return false;
 	}
-	
+
 	public boolean update(int me_id, int se_id, String se_name, int se_hours) {
 		String query = "update sub_event set se_name = ?, se_hours = ? where me_id = ? and se_id = ?";
 		try {
@@ -62,7 +62,7 @@ public class SubEventDao {
 			ps.setInt(4, se_id);
 			ps.execute();
 			return true;
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -90,11 +90,13 @@ public class SubEventDao {
 		return se_list;
 	}
 
-	public List<SubEvent> fetchWithSearchAndOrder(int me_id, String searchCategory, String searchStr, String orderCategory,
-			String orderType) {
+	public List<SubEvent> fetchWithSearchAndOrder(int me_id, String searchCategory, String searchStr,
+			String orderCategory, String orderType) {
 		List<SubEvent> seList = fetch(me_id);
-		seList = sortBySearch(searchCategory, searchStr, seList);
-		seList = sortByOrder(orderCategory, orderType, seList);
+		if (seList != null) {
+			seList = sortBySearch(searchCategory, searchStr, seList);
+			seList = sortByOrder(orderCategory, orderType, seList);
+		}
 		return seList;
 	}
 

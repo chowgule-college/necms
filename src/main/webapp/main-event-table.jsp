@@ -18,6 +18,7 @@ MainEventDao dao = new MainEventDao(ConnectionProvider.getConnection());
 List<MainEvent> meList = dao.fetchWithSearchAndOrder(searchCategory, searchStr, orderCategory, orderType);
 MainEvent me;
 int count = 0;
+if(meList != null){
 %>
 
 <c:forEach var="i" begin="1" end="<%=meList.size()%>">
@@ -37,3 +38,4 @@ int count = 0;
                     </td>
 				</tr>
 			</c:forEach>
+<% } %>

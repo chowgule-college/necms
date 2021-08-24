@@ -6,8 +6,6 @@
 	String se_id = request.getParameter("se_id");
 	String me_title = request.getParameter("me_title");
 	String se_name = request.getParameter("se_name");
-	
-	String[] me = me_title.split(" ");
 %>
 
 <div class="container">
@@ -21,7 +19,7 @@
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item link-primary cursor-pointer"
 				onclick="loadMainEvent()">All Events</li>
-			<li class="breadcrumb-item link-primary cursor-pointer" onclick="loadSubEvent('<%=me_id%>', '<%= me[0]%>', '<%= me[1]%>')"><%=me_title%></li>
+			<li class="breadcrumb-item link-primary cursor-pointer" onclick="loadSubEvent('<%=me_id%>', '<%= me_title%>')"><%=me_title%></li>
 			<li class="breadcrumb-item active" aria-current="page"><%=se_name%></li>
 		</ol>
 	</nav>

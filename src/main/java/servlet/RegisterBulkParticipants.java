@@ -27,7 +27,7 @@ public class RegisterBulkParticipants extends HttpServlet {
 		int me_id = Integer.parseInt(request.getParameter("me_id"));
 		int se_id = Integer.parseInt(request.getParameter("se_id"));
 		ParticipantDao dao = new ParticipantDao(ConnectionProvider.getConnection());
-		if (dao.addBulkParticipants(se_id, me_id, s_rollnoList)) {
+		if (dao.insertInBulk(se_id, me_id, s_rollnoList)) {
 			response.setContentType("text/html");
 			response.getWriter().println("1");
 		}

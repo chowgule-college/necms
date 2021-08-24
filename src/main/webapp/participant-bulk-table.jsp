@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="entity.Participant"%>
+<%@page import="dao.ParticipantDao"%>
 <%@page import="entity.Student"%>
 <%@page import="helper.ConnectionProvider"%>
 <%@page import="dao.StudentDao"%>
@@ -11,7 +14,9 @@ String se_id = request.getParameter("se_id");
 String s_rollno = request.getParameter("s_rollnoList");
 String[] s_rollnoList = s_rollno.split(",");
 StudentDao dao = new StudentDao(ConnectionProvider.getConnection());
-List<Student> studentList = dao.getStudentsByRollNoList(s_rollnoList);
+ParticipantDao dao2 = new ParticipantDao(ConnectionProvider.getConnection());
+List<Participant> pList = dao2.fetch(Integer.parseInt(se_id), Integer.parseInt(me_id));
+List<Student> studentList = dao.fetchWithoutParticipant(s_rollnoList, pList);
 s_rollno = "";
 int count = 0;
 %>

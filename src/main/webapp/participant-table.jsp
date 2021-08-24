@@ -17,10 +17,11 @@ String orderCategory = request.getParameter("orderCategory");
 String orderType = request.getParameter("orderType");
 ParticipantDao pDao = new ParticipantDao(ConnectionProvider.getConnection());
 StudentDao sDao = new StudentDao(ConnectionProvider.getConnection());
-List<Student> studentList = sDao.getStudents(pDao.getAllParticipantBySubAndMainEvent(se_id, me_id), searchCategory,
+List<Student> studentList = sDao.fetchWithSearchAndOrder(pDao.fetch(se_id, me_id), searchCategory,
 		searchStr, orderCategory, orderType);
 Student student;
 int count = 0;
+if(studentList != null){
 %>
 
 <c:forEach var="i" begin="1" end="<%=studentList.size()%>">
@@ -40,3 +41,4 @@ int count = 0;
                     </td>
 	</tr>
 </c:forEach>
+<% } %>

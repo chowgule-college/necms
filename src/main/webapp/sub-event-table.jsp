@@ -16,6 +16,7 @@ SubEventDao dao = new SubEventDao(ConnectionProvider.getConnection());
 List<SubEvent> seList = dao.fetchWithSearchAndOrder(me_id, searchCategory, searchStr, orderCategory, orderType);
 SubEvent se;
 int count = 0;
+if(seList != null){
 %>
 
 <c:forEach var="i" begin="1" end="<%=seList.size()%>">
@@ -35,3 +36,4 @@ int count = 0;
                     </td>
                 </tr>
 			</c:forEach>
+<%} %>			

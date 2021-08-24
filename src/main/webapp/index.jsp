@@ -80,6 +80,8 @@ i.fas {
 					+ me_date,
 			success : function(data) {
 				document.getElementById("new-error").innerHTML = "";
+				document.getElementById("me_name").value = "";
+				document.getElementById("me_date").value = "";
 				if (data == 1) {
 					alert('Main Event Added success fully added')
 					$("#addNewEventModal").modal("hide");
@@ -191,6 +193,8 @@ i.fas {
 						+ se_hours + "&&me_id=" + me_id,
 				success : function(data) {
 					document.getElementById("new-error").innerHTML = "";
+					document.getElementById("se_name").value = "";
+					document.getElementById("se_hours").value = "";
 					if(data == 1){
 						alert('Sub Event Added success fully added');
 						$("#addNewSubEventModal").modal("hide");
@@ -253,7 +257,7 @@ i.fas {
 			});
 		}
 		
-		
+		/* Participant Functions */
 
 		function loadParticipant(me_id, se_id, se_name) {
 			var me_title = document.getElementById("me_title").innerHTML;
@@ -261,8 +265,6 @@ i.fas {
 				type : "POST",
 				url : "participant.jsp?me_id=" + me_id + "&&se_id=" + se_id
 						+ "&&me_title=" + me_title + "&&se_name=" + se_name,
-				processData : false,
-				contentType : false,
 				success : function(data) {
 					document.getElementById("content-area").innerHTML = data;
 					loadParticipantTable(me_id, se_id);
@@ -284,8 +286,6 @@ i.fas {
 						+ se_id + "&&searchCategory=" + searchCategory
 						+ "&&searchStr=" + searchStr + "&&orderCategory="
 						+ orderCategory + "&&orderType=" + orderType,
-				processData : false,
-				contentType : false,
 				success : function(data) {
 					document.getElementById("table-content").innerHTML = data;
 				}
@@ -294,12 +294,14 @@ i.fas {
 
 		function checkRollNo(me_id, se_id, addParticipantStatus) {
 			var s_rollno = document.getElementById("s_rollno").value;
+			if (s_rollno == ""){
+				document.getElementById("rollno-status").innerHTML = "Please Enter Roll NO.!";
+				return;
+			}
 			$.ajax({
 				type : "POST",
 				url : "CheckStudent?s_rollno=" + s_rollno + "&&me_id=" + me_id
 						+ "&&se_id=" + se_id,
-				processData : false,
-				contentType : false,
 				success : function(data) {
 					if (data == 0){
 						document.getElementById("rollno-status").innerHTML = "Student Not Found!";
@@ -340,8 +342,6 @@ i.fas {
 				type : "POST",
 				url : "participant-bulk-table.jsp?s_rollnoList=" + s_rollnoList + "&&me_id=" + me_id
 						+ "&&se_id=" + se_id,
-				processData : false,
-				contentType : false,
 				success : function(data) {
 					document.getElementById("table-bulk-content").innerHTML = data;
 					$("#parsedRollNos").modal("show");
@@ -354,8 +354,6 @@ i.fas {
 				type : "POST",
 				url : "RegisterBulkParticipants?s_rollnoList=" + s_rollnoList + "&&me_id=" + me_id
 						+ "&&se_id=" + se_id,
-				processData : false,
-				contentType : false,
 				success : function(data) {
 					if(data == 1){
 						$("#parsedRollNos").modal("hide");
@@ -366,11 +364,7 @@ i.fas {
 					}
 				}
 			});
-		}
-		
-		
-		
-		
+		}	
 		
 		function removeParticipant(me_id, se_id, p_rollno){
 			$('#deleteRow').modal('show');
@@ -379,8 +373,6 @@ i.fas {
 				$.ajax({
 					type : "POST",
 					url : "RemoveParticipant?me_id=" + me_id + "&&se_id=" + se_id + "&&p_rollno=" + p_rollno,
-					processData : false,
-					contentType : false,
 					success : function(data) {
 						if(data == 1){
 							$('#deleteRow').modal('hide');
@@ -392,11 +384,6 @@ i.fas {
 				});
 			});
 		}
-		
-		
-		
-		
-
 
 		loadMainEvent()
 	</script>
