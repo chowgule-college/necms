@@ -329,6 +329,8 @@ i.fas {
 				processData : false,
 				contentType : false,
 				success : function(data) {
+					document.getElementById("s_rollno").value = "";
+					document.getElementById("rollno-status").innerHTML = "";
 					if (data == 1){
 						$("#addNewSubEventModal").modal("hide");
 						loadParticipantTable(me_id, se_id);
@@ -358,6 +360,7 @@ i.fas {
 				url : "RegisterBulkParticipants?s_rollnoList=" + s_rollnoList + "&&me_id=" + me_id
 						+ "&&se_id=" + se_id,
 				success : function(data) {
+					document.getElementById("bulkAddTextArea").value = "";
 					if(data == 1){
 						$("#parsedRollNos").modal("hide");
 						$("#addNewSubEventModal").modal("hide");
