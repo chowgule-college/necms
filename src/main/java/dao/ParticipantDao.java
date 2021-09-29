@@ -81,7 +81,7 @@ public class ParticipantDao {
 					query += ", (?,?,?)";
 				}
 			}
-			
+
 			try {
 				PreparedStatement ps = con.prepareStatement(query);
 				int count = 0;
@@ -89,11 +89,11 @@ public class ParticipantDao {
 					ps.setString(i, p_rollnoList[count]);
 					ps.setInt(i + 1, se_id);
 					ps.setInt(i + 2, me_id);
-					count++ ;
+					count++;
 				}
 				ps.execute();
 				return true;
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -101,4 +101,26 @@ public class ParticipantDao {
 
 		return false;
 	}
+
+	public List<Participant> allParticipations(String rollno) {
+		String query = "select * from participant where p_rollno = ?";
+		boolean initiateListFlag = false;
+		List<Participant> participations = null;
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, rollno);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				if (!(initiateListFlag)) {
+					participations = new ArrayList<Participant>();
+					initiateListFlag = true;
+				}
+				participations.add(getObject(rs));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return participations;
+	}
+
 }
