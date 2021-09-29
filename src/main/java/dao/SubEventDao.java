@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import entity.SubEvent;
 
@@ -197,5 +198,25 @@ public class SubEventDao {
 			}
 		}
 		return orderedMeList;
+	}
+	
+	public HashMap<String, String> getSENameAndHours(int se_id) {
+		HashMap<String, String> seNameAndHours = null;
+		String query = "select se_name, se_hours from sub_event where se_id = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, se_id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				seNameAndHours = new HashMap<String, String>();
+				seNameAndHours.put("se_name", rs.getString(1));
+				seNameAndHours.put("se_hours", String.valueOf(rs.getInt(2)));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return seNameAndHours;
 	}
 }

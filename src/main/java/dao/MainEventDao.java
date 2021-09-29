@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 import entity.MainEvent;
@@ -180,6 +181,24 @@ public class MainEventDao {
 			}
 		}
 		return orderedMeList;
+	}
+	
+	public HashMap<String, String> getMENameAndDate(int me_id) {
+		HashMap<String, String> meNameAndDate = null;
+		String query = "select me_name, me_date from main_event where me_id = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, me_id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				meNameAndDate = new HashMap<String, String>();
+				meNameAndDate.put("me_name", rs.getString(1));
+				meNameAndDate.put("me_date", rs.getDate(2).toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return meNameAndDate;
 	}
 
 }
