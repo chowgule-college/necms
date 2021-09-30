@@ -59,7 +59,7 @@ i.fas {
 		%>
 
 
-		<div class="table_container" style="min-height: 60vh;">
+		<div class="table_container" style="min-height: 50vh;">
 			<table class="table mt-5">
 				<thead>
 					<tr>
