@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="dao.MainEventDao"%>
 <%@page import="dao.SubEventDao"%>
@@ -45,14 +46,15 @@ i.fas {
 		<h4 class="mt-4">Event Participation List</h4>
 
 		<%
+		DecimalFormat df = new DecimalFormat("#.00");
 		ParticipantDao pDao = new ParticipantDao(ConnectionProvider.getConnection());
 		SubEventDao sDao = new SubEventDao(ConnectionProvider.getConnection());
 		MainEventDao mDao = new MainEventDao(ConnectionProvider.getConnection());
-		String rollno = "SU190209";
+		String rollno = "SU190267";
 		int count = 0;
 		int maxCredits = 180;
 		int totalCredits = 0;
-		float percentage = 0;
+		String percentage;
 		List<Participant> participations = pDao.allParticipations(rollno);
 		%>
 
@@ -108,9 +110,11 @@ i.fas {
 				Remaining: <span id="hours_completed" class="h6 text-center">
 					<%
 					if (totalCredits > maxCredits) {
+						percentage = "100";
 					%> <%=0%>
 					<%
 					} else {
+						percentage = df.format(totalCredits * 100 / maxCredits);
 					%><%=maxCredits - totalCredits%>
 					<%
 					}
@@ -118,7 +122,7 @@ i.fas {
 				</span> hours
 			</p>
 			<%
-			percentage = totalCredits * 100 / maxCredits;
+			
 			%>
 			<p class="col-4 text-center">
 				Progress: <span id="hours_completed" class="h6 text-center"><%=percentage%></span>%
