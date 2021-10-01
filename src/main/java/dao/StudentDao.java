@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 import entity.Participant;
@@ -14,6 +15,7 @@ import entity.Student;
 
 public class StudentDao {
 	private Connection con;
+	private int maxHours = 180;
 
 	public StudentDao(Connection con) {
 		super();
@@ -244,5 +246,147 @@ public class StudentDao {
 			}
 		}
 		return students;
+	}
+	
+	
+	
+	
+	public List<Student> fetchAll(String orderCategory, String orderType){
+		List<Student> students = null;
+		boolean initStudentListFlag = false;
+		String query ;
+		if(orderCategory.equals("ALL") && orderType.equals("ALL")) {
+			query = "select * from student";
+		}else if(orderCategory.equals("ALL") && !(orderType.equals("ALL"))) {
+			query = "select * from student where course_name = \"" +  orderType + "\"";
+		}else if(!(orderCategory.equals("ALL")) && orderType.equals("ALL")) {
+			query = "select * from student where year = \"" +  orderCategory + "\"";
+		}else {
+			query = "select * from student where course_name = \"" +  orderType + "\" and year = \"" + orderCategory + "\"";
+		}
+		
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				if(!(initStudentListFlag)) {
+					students = new ArrayList<Student>();
+					initStudentListFlag = true;
+				}
+				students.add(getObject(rs));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return students;
+	}
+	
+	private HashMap<String, String> calculateHours(List<Participant> participations){
+		int totalHours = 0;
+		SubEventDao sDao = new SubEventDao(con);
+		HashMap<String, String> hours = new HashMap<String, String>();
+		if(participations != null) {
+			for(int i = 0; i < participations.size(); i++) {
+				totalHours += sDao.getSEHours(participations.get(i).getSe_id());
+			}
+			hours.put("total", String.valueOf(totalHours));
+			if(totalHours > maxHours)
+				hours.put("remaining", "0");
+			else
+				hours.put("remaining", String.valueOf(maxHours - totalHours));
+		}else {
+			hours.put("total", "0");
+			hours.put("remaining", String.valueOf(maxHours));
+		}
+		return hours;
+	}
+	
+	public List<HashMap<String, String>> fetchALLWithHoursInfo(String orderCategory, String orderType){
+		ParticipantDao pDao = new ParticipantDao(con);
+		HashMap<String, String> studentWithHours = null;
+		boolean initListFlag = false;
+		List<HashMap<String, String>> studentsWithHours = null;
+		List<Student> students = fetchAll(orderCategory, orderType);
+		if (students != null) {
+			if(!(initListFlag)) {
+				studentsWithHours = new ArrayList<HashMap<String,String>>();
+				initListFlag = true;
+			}
+			for(int i = 0; i < students.size(); i++) {
+				Student student = students.get(i);
+				List<Participant> participations = pDao.allParticipations(student.getS_rollno());
+				studentWithHours = new HashMap<String, String>();
+				studentWithHours.put("rollno", student.getS_rollno());
+				studentWithHours.put("name", student.getS_name());
+				studentWithHours.put("year",student.getS_year());
+				studentWithHours.put("course", student.getS_course());
+				studentWithHours.putAll(calculateHours(participations));
+				studentsWithHours.add(studentWithHours);
+			}
+		}
+		
+		return studentsWithHours;
+	}
+	
+	public List<HashMap<String, String>> fetchALLWithHoursInfoWithFilter(String searchCategory,
+			String searchStr, String orderCategory, String orderType){
+		
+		List<HashMap<String, String>> studentsWithHours = fetchALLWithHoursInfo(orderCategory, orderType);
+		
+		if (studentsWithHours != null) {
+			studentsWithHours = sortBySearchForStudentHours(searchCategory, searchStr, studentsWithHours);
+		}
+		
+		return studentsWithHours;
+	}
+	
+	public List<HashMap<String, String>> sortBySearchForStudentHours(String searchCategory, String searchStr, List<HashMap<String, String>> studentsWithHours) {
+		List<HashMap<String, String>> sortedList = new ArrayList<HashMap<String,String>>();
+		
+		for (int i = 0; i < studentsWithHours.size(); i++) {
+			if (studentsWithHours.get(i).get(searchCategory).toLowerCase().contains(searchStr.toLowerCase()))
+				sortedList.add(studentsWithHours.get(i));
+		}
+		return sortedList;
+	}
+	
+	public List<String> allYears(){
+		List<String> years = null;
+		boolean initListFlag = false;
+		String query = "select distinct year from student";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				if (!(initListFlag)) {
+					years = new ArrayList<String>();
+					initListFlag = true;
+				}
+				years.add(rs.getString(1));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return years;
+	}
+	
+	public List<String> allCourses(){
+		List<String> courses = null;
+		boolean initListFlag = false;
+		String query = "select distinct course_name from student";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				if (!(initListFlag)) {
+					courses = new ArrayList<String>();
+					initListFlag = true;
+				}
+				courses.add(rs.getString(1));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return courses;
 	}
 }

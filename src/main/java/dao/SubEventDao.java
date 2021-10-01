@@ -219,4 +219,20 @@ public class SubEventDao {
 		
 		return seNameAndHours;
 	}
+	
+	public int getSEHours(int se_id) {
+		int hours = 0;
+		String query = "select se_hours from sub_event where se_id = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, se_id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				hours = rs.getInt(1);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return hours;
+	}
 }
