@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student</title>
+<title>STUDENT</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -39,27 +39,29 @@ i.fas {
 		xhr.onload = function() {
 			if (this.status == 200) {
 				document.getElementById('content-area').innerHTML = this.responseText;
+				startListener();
 				loadAllStudentTable();
 			}
 		}
 		xhr.send();
 	}
 	
-	var input = document.getElementById("filter-query");
-	input.addEventListener("keyup", function(event) {
-			  if (event.keyCode === 
-			  13) {
-			    event.preventDefault();
-				loadAllStudentTable();
-			  }
-			}); 
+	function startListener(){
+		var input = document.getElementById("filter-query");
+		input.addEventListener("keyup", function(event) {
+				  if (event.keyCode === 
+				  13) {
+				    event.preventDefault();
+					loadAllStudentTable();
+				  }
+				}); 
+	}
 
 	function loadAllStudentTable() {
 		var searchCategory = document.getElementById("filter-field").value;
 		var searchStr = document.getElementById("filter-query").value;
 		var orderCategory = document.getElementById("sort-field").value;
 		var orderType = document.getElementById("sort-direction").value;
-		console.log(searchCategory + " " + searchStr + " " + orderCategory + " " + orderType)
 		$.ajax({
 			type : "POST",
 			url : "all-student-table.jsp?searchCategory=" + searchCategory
@@ -70,6 +72,17 @@ i.fas {
 			}
 		});
 	}
+	function loadIStudent(rollno, name){
+		$.ajax({
+			type : "POST",
+			url : "student-view2.jsp?rollno=" + rollno
+					+ "&&name=" + name,
+			success : function(data) {
+				document.getElementById("content-area").innerHTML = data;
+			}
+		});
+	}
+	
 	</script>
 </body>
 

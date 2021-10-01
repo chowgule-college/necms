@@ -27,7 +27,7 @@ if (studentsWithHours != null) {
 	<tr>
 		<th scope="row"><%=count%></th>
 		<td><%=studentWithHours.get("rollno")%></td>
-		<td colspan="2"><%=studentWithHours.get("name")%></td>
+		<td colspan="2" onclick="loadIStudent('<%=studentWithHours.get("rollno")%>', '<%=studentWithHours.get("name")%>')" class="pointer"><%=studentWithHours.get("name")%></td>
 		<td><%=studentWithHours.get("year")%></td>
 		<td><%=studentWithHours.get("course")%></td>
 		<td><%=studentWithHours.get("total")%></td>

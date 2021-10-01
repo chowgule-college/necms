@@ -4,7 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
 
 <head>
@@ -26,7 +26,7 @@
 
 </head>
 
-<body>
+<body> -->
 <%
 	StudentDao sDao = new StudentDao(ConnectionProvider.getConnection());
 	List<String> years = sDao.allYears();
@@ -218,11 +218,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 
 </script>
 
 </body>
 
-</html>
+</html> -->
